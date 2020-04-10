@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-item color="primary" slot="start">
+            <ion-icon name="person"></ion-icon>
+        </ion-item>
+        <ion-title>{{'personalInfo.personalInfo' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="personalInfoForm" (ngSubmit)="onSave(personalInfoForm.value)" novalidate>
+        <ion-item>
+            <ion-label position="floating">{{'personalInfo.nameSurname' | translate}}</ion-label>
+            <ion-input formControlName="nameSurname" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">{{'personalInfo.address' | translate}}</ion-label>
+            <ion-input formControlName="address" type="text"></ion-input>
+        </ion-item>
+        <ion-button expand="full" [disabled]="!personalInfoForm.valid" type="submit">{{'save' | translate}}</ion-button>
+    </form>
+    <ion-button color="danger" *ngIf="showBack" expand="full" (click)="onBack()">{{'back' | translate}}</ion-button>
+</ion-content>

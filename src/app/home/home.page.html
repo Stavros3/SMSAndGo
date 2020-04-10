@@ -1,20 +1,88 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header [translucent]="true">
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>
+                {{title}}
+            </ion-title>
+            <ion-button color="light" fill="clear" slot="end" shape="round" size="small" (click)="onShowImage()">
+                <ion-icon slot="icon-only" name="reader"></ion-icon>
+            </ion-button>
+        </ion-toolbar>
+    </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-card>
+        <ion-card-header>
+            <ion-item (click)="send(1)" detail='true'>
+                <ion-icon color="danger" name="fitness" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #1</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.1' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-item (click)="send(2)" detail='true'>
+                <ion-icon color="secondary" name="cart" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #2</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.2' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-item (click)="send(3)" detail='true'>
+                <ion-icon color="success" name="cash" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #3</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.3' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-item (click)="send(4)" detail='true'>
+                <ion-icon color="tertiary" name="body" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #4</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.4' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-item (click)="send(5)" detail='true'>
+                <ion-icon color="warning" name="chatbubbles" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #5</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.5' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <ion-item (click)="send(6)" detail='true'>
+                <ion-icon color="dark" name="bicycle" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #6</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.6' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

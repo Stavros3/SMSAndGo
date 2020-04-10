@@ -1,5 +1,8 @@
 {
   "name": "SMSAndGo",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "0c70807d"
 }

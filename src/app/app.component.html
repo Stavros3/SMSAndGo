@@ -1,3 +1,42 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
+        <ion-header>
+            <ion-toolbar color="tertiary">
+                <ion-title>{{'menu.title' | translate}}</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-item (click)="onOpenPersonalSettings()">
+                    <ion-icon color="dark" name="person" slot="start"></ion-icon>
+                    {{'menu.editPerson' | translate}}
+                    <ion-radio hidden></ion-radio>
+                </ion-item>
+                <ion-item (click)="onOpenEditImages()">
+                    <ion-icon color="dark" name="reader" slot="start"></ion-icon>
+                    {{'menu.employeesForm' | translate}}
+                    <ion-radio hidden></ion-radio>
+                </ion-item>
+                <!-- <ion-item>
+                  <ion-icon color="dark" name="stats-chart" slot="start"></ion-icon>
+                  {{'menu.stats' | translate}}
+                  <ion-radio hidden></ion-radio>
+              </ion-item> -->
+                <ion-item>
+                    <ion-icon color="dark" name="language" slot="start"></ion-icon>
+                    <ion-button (click)="useLanguage('el')">Ελληνικα</ion-button>
+                    <ion-button (click)="useLanguage('en')">English</ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+
+        <ion-footer>
+            <ion-toolbar>
+                <ion-card-content>
+                    <ion-label text-wrap onclick="window.open('https://www.linkedin.com/in/stavros-oikonomidis/', '_system', 'location=yes'); return false;">Made by Stavros Oikonomidis</ion-label>
+                </ion-card-content>
+            </ion-toolbar>
+        </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

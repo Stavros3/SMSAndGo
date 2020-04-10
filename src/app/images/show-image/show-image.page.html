@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-button color="light" fill="clear" slot="start" shape="round" size="small" (click)="onBack()">
+            <ion-icon slot="icon-only" name="backspace"></ion-icon>
+        </ion-button>
+        <ion-title>{{'menu.employeesForm' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-slides [options]="slideOpts">
+        <ion-slide>
+            <div class="swiper-zoom-container">
+                <img [src]="imageData" (click)="onOpenImage()">
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

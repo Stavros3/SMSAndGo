@@ -1,0 +1,52 @@
+{
+    "menu": {
+        "title": "Menu",
+        "editPerson": "Edit personal info",
+        "stats": "Stats",
+        "employeesForm": "Permit For Employees",
+        "showPermit": "Show Permit"
+    },
+    "sendAlert": {
+        "successTitle": "Success",
+        "msgSuccess": "SMS has been send",
+        "errorTitle": "Something went wrong",
+        "errorMsg": "SMS has not been send"
+    },
+    "sendCodes": {
+        "1": "Going to the pharmacy or visiting a Medical Doctor, in the case that this is recommended after consultation.",
+        "2": "Going to a supply store in operation (super markets, mini markets etc), which can not ship or deliver its goods.",
+        "3": "Going to the bank, when electronic transactions are not possible.",
+        "4": "Going to help people in need.",
+        "5": "Going to a ceremony (e.g., funeral, marriage, baptism) under the conditions provided by law; or movement of divorced or legally separated parents in the context of parental responsibility, custody, or visiting rights in accordance with the applicable provisions.",
+        "6": "Physical exercise in an open space or for a pet’s needs, individually or up to 2 people. In the latter case, a minimum distance of 1.5 meters must be kept at all times."
+    },
+    "sendCode": "Send SMS. Code:",
+    "personalInfo": {
+        "personalInfo": "Personal Info",
+        "nameSurname": "Name Surname",
+        "address": "Address"
+    },
+    "save": "Save",
+    "errors": {
+        "nonEmpty": "Field myst not be empty",
+        "nonNumeric": "Only letters are allowed"
+    },
+    "clearData": {
+        "title": "Clear Data",
+        "description": "Data will be deleted. Are sure?"
+    },
+    "exit": "Exit",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "editPermit": {
+        "title": "Permit Form",
+        "body": "Add or edit your permit form, form your employer",
+        "fromCamera": "Take picture",
+        "fromFile": "Select file",
+        "or": "or",
+        "imageExist": "Permit file has been saved",
+        "imagenNotExist": "There is no permit file",
+        "delete": "Delete Permit"
+    }
+}

@@ -33,3 +33,7 @@ ion-content ion-toolbar {
 ion-icon {
     font-size: 35px; //Preferred size here
 }
+
+.my-custom-modal-css {
+    --background: transparent !important;
+}

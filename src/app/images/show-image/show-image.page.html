@@ -1,18 +1,25 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar color="primary">
         <ion-button color="light" fill="clear" slot="start" shape="round" size="small" (click)="onBack()">
             <ion-icon slot="icon-only" name="backspace"></ion-icon>
         </ion-button>
         <ion-title>{{'menu.employeesForm' | translate}}</ion-title>
     </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content fullscreen>
-    <ion-slides [options]="slideOpts">
+    <ion-item class="close-fake" lines="none" text-center>
+        <ion-button (click)="onBack()" fill="clear" color="light">
+            <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+        </ion-button>
+    </ion-item>
+    <ion-slides [options]="slideOpts" *ngIf="haveData && imageData != ''">
         <ion-slide>
             <div class="swiper-zoom-container">
-                <img [src]="imageData" (click)="onOpenImage()">
+                <img *ngIf="haveData && imageData != '' " [src]="imageData" (click)="onOpenImage()" />
             </div>
         </ion-slide>
     </ion-slides>
+
+
 </ion-content>

@@ -62,17 +62,16 @@ export class AppComponent {
     });
     return await modal.present();
   }
-  
-  
-  clearAppData() {
-    this.storage.clear();
-  }
-  
-  async onOpenEditImages(){
+
+  async onOpenEditImages() {
     const modal = await this.modalController.create({
       component: ImagesPage
     });
     return await modal.present();
 
+  }
+
+  clearAppData() {
+    this.storage.clear();
   }
 }

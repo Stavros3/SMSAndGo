@@ -28,7 +28,7 @@ export class ImagesPage implements OnInit {
   onTakePicture() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -39,7 +39,7 @@ export class ImagesPage implements OnInit {
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.storage.set('imagePermit', base64Image).then(() => {
         this.imageExist = true;
-      })
+      }).catch(err=>{alert('Image did not saved on storage')})
     }, (err) => {
       // Handle error
     });

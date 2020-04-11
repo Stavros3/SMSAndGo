@@ -88,19 +88,16 @@ export class HomePage {
         this.appComp.onOpenEditImages();
       } else {
        //emfanish eikonas
-        this.presentImageModal(data)
+        this.presentImageModal()
 
       }
     })
   }
 
-  async presentImageModal(myImage) {    
+  async presentImageModal() {    
     const modal = await this.modalController.create({
       component: ShowImagePage,
-      swipeToClose: true,
-      componentProps: {
-        imgData: myImage
-      }
+      swipeToClose: true
     });
     return await modal.present();
   }

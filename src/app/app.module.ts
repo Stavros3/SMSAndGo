@@ -11,22 +11,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage';
-import { PersonalInfoPage } from './personal-info/personal-info.page';
-import { ImagesPage } from './images/images.page';
-import { Camera } from '@ionic-native/camera/ngx';
 import { ShowImagePageModule } from './images/show-image/show-image.module';
+import { PersonalInfoPageModule } from './personal-info/personal-info.module';
+import { ImagesPageModule } from './images/images.module';
 
 
 @NgModule({
-  declarations: [AppComponent,PersonalInfoPage,ImagesPage],
-  entryComponents:[PersonalInfoPage,ImagesPage],
+  declarations: [AppComponent],
   imports: [BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
     TranslateModule.forRoot({
       loader: { 
         provide: TranslateLoader,
@@ -36,14 +31,15 @@ import { ShowImagePageModule } from './images/show-image/show-image.module';
     }),
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    ShowImagePageModule
+    ShowImagePageModule,
+    PersonalInfoPageModule,
+    ImagesPageModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HttpClient,
-    Camera
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })

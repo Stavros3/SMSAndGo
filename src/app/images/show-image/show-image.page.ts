@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { ModalController, NavParams } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-show-image',
@@ -17,9 +16,7 @@ export class ShowImagePage implements OnInit {
   public imageData:any = '';
 
   constructor(private storage: Storage,
-    private modalCtrl:ModalController,
-    private navParams: NavParams,
-    private translate: TranslateService) {
+    private modalCtrl:ModalController) {
       
      }
 

@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ShowImagePageModule } from './images/show-image/show-image.module';
 import { PersonalInfoPageModule } from './personal-info/personal-info.module';
 import { ImagesPageModule } from './images/images.module';
+import { MainService } from './services/main/main.service';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ImagesPageModule } from './images/images.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HttpClient
+    HttpClient,
+    MainService
   ],
   bootstrap: [AppComponent]
 })

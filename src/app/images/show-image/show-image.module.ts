@@ -7,28 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ShowImagePageRoutingModule } from './show-image-routing.module';
 
 import { ShowImagePage } from './show-image.page';
-import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ShowImagePageRoutingModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-    })
+    ShowImagePageRoutingModule
   ],
   declarations: [ShowImagePage]
 })
 export class ShowImagePageModule {}
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}

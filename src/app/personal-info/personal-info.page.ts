@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '@ionic/storage';
 import { Person } from '../models/person.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { MainService } from '../services/main/main.service';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 
 @Component({
   selector: 'app-personal-info',
@@ -17,9 +18,9 @@ export class PersonalInfoPage implements OnInit {
   public showBack: boolean = false;
   constructor(
     public translate: TranslateService,
-    private storage: Storage,
     public formBuilder: FormBuilder,
-    private modalCtrl:ModalController) {
+    private modalCtrl: ModalController,
+    public mainService: MainService) {
 
     this.personalInfoForm = this.formBuilder.group({
       nameSurname: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(80), Validators.minLength(2)])),
@@ -30,7 +31,7 @@ export class PersonalInfoPage implements OnInit {
   }
 
   ngOnInit() {
-    this.storage.get('personalData').then((data: Person) => {
+    this.mainService.getPersonData().then((data: Person) => {
       if (data) {
         this.personalInfoForm.setValue({ nameSurname: data.nameSurname, address: data.address })
         this.showBack = true;
@@ -39,10 +40,12 @@ export class PersonalInfoPage implements OnInit {
   }
 
   onSave(value: Person) {
-    this.storage.set('personalData', value).then(async () => {
-      this.modalCtrl.dismiss({
-        'dismissed': true
-      });
+    this.mainService.setPersonData(value).then(async () => {
+      AnalyticsFirebase.logEvent('Personal_Info_Saved').finally(() => {
+        this.modalCtrl.dismiss({
+          'dismissed': true
+        });
+      })
     })
   }
 

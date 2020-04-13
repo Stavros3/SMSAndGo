@@ -10,6 +10,7 @@ import { PersonalInfoPage } from './personal-info.page';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MainService } from '../services/main/main.service';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     }),
     ReactiveFormsModule
   ],
-  declarations: [PersonalInfoPage]
+  declarations: [PersonalInfoPage],
+  providers:[MainService]
 })
 export class PersonalInfoPageModule { }
 

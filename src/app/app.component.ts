@@ -4,9 +4,10 @@ import { Platform, ModalController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '@ionic/storage';
 import { PersonalInfoPage } from './personal-info/personal-info.page';
 import { ImagesPage } from './images/images.page';
+import { MainService } from './services/main/main.service';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 
 @Component({
   selector: 'app-root',
@@ -19,38 +20,45 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public translate: TranslateService,
-    private storage: Storage,
     public modalController: ModalController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public mainService: MainService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.storage.get('langDefault').then(data => {
+    this.platform.ready().then(async () => {
+      await AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
+        AnalyticsFirebase.resetAnalyticsData()
+      })
+      await AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
+        AnalyticsFirebase.resetAnalyticsData()
+      })
+      this.mainService.getDefauldLang().then(data => {
         if (data) {
           this.translate.setDefaultLang(data);
           this.translate.currentLang = data;
           this.translate.currentLang = data;
         } else {
           this.translate.setDefaultLang('el');
-          this.storage.set('langDefault', 'el');
+          this.mainService.setDefauldLang('el');
           this.translate.currentLang = 'el';
         }
       }).catch(() => {
         this.translate.setDefaultLang('el');
-        this.storage.set('langDefault', 'el');
+        this.mainService.setDefauldLang('el');
         this.translate.currentLang = 'el';
       })
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-    });
+    })
   }
   ionViewDidLeave() {
   }
+
   useLanguage(language: string) {
-    this.storage.set('langDefault', language).then(data => {
+    this.mainService.setDefauldLang(language).then(data => {
       this.translate.use(language);
       this.translate.currentLang = language;
     })
@@ -60,6 +68,7 @@ export class AppComponent {
     const modal = await this.modalController.create({
       component: PersonalInfoPage
     });
+    AnalyticsFirebase.logEvent('Open_Edit_Personal_Data')
     return await modal.present();
   }
 
@@ -67,11 +76,11 @@ export class AppComponent {
     const modal = await this.modalController.create({
       component: ImagesPage
     });
+    AnalyticsFirebase.logEvent('Open_Edit_Image')
     return await modal.present();
-
   }
 
   clearAppData() {
-    this.storage.clear();
+    this.mainService.clearAll();
   }
 }

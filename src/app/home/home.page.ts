@@ -9,6 +9,7 @@ import { PersonalInfoPage } from '../personal-info/personal-info.page';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { AppComponent } from '../app.component';
 import { ShowImagePage } from '../images/show-image/show-image.page';
+import { MainService } from '../services/main/main.service';
 
 @Component({
   selector: 'app-home',
@@ -23,16 +24,15 @@ export class HomePage {
   constructor(private sms: SMS,
     private menu: MenuController,
     private translate: TranslateService,
-    private storage: Storage,
     private alertController: AlertController,
     private modalController: ModalController,
     private platform: Platform,
-    private appComp: AppComponent
+    private appComp: AppComponent,
+    private mainService: MainService
   ) {
     AnalyticsFirebase.setCurrentScreen('home')
       .then(() => console.log('View successfully tracked'))
       .catch(err => console.log('Error tracking view:', err));
-
     this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     })
@@ -50,14 +50,17 @@ export class HomePage {
   }
 
   public send(code: number) {
-    this.storage.get('personalData').then((data: Person) => {
+    this.mainService.getPersonData().then((data: Person) => {
       if (!data) {
         this.onOpenPersonalSettings();
       }
-      this.sms.send('13033', code + ' ' + data.nameSurname + ' ' + data.address, { android: { intent: "INTENT" } }).then(() => {
-        //this.presentAlert(true).then(() => { })
-      }).catch(err => {
-        this.presentAlert(false).then(() => { })
+
+      AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
+        this.sms.send('13033', code + ' ' + data.nameSurname + ' ' + data.address, { android: { intent: "INTENT" } }).then(() => {
+          //this.presentAlert(true).then(() => { })
+        }).catch(err => {
+          this.presentAlert(false).then(() => { })
+        })
       })
     })
   }
@@ -83,18 +86,19 @@ export class HomePage {
   }
 
   async onShowImage() {
-    this.storage.get('imagePermit').then(async (data) => {
+    this.mainService.getImage().then(async (data) => {
       if (!data) {
         this.appComp.onOpenEditImages();
       } else {
-       //emfanish eikonas
-        this.presentImageModal()
-
+        //emfanish eikonas
+        AnalyticsFirebase.logEvent('Show_Image').finally(() => {
+          this.presentImageModal()
+        })
       }
     })
   }
 
-  async presentImageModal() {    
+  async presentImageModal() {
     const modal = await this.modalController.create({
       component: ShowImagePage,
       swipeToClose: true

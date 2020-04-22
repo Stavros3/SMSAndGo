@@ -10,6 +10,7 @@ import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { AppComponent } from '../app.component';
 import { ShowImagePage } from '../images/show-image/show-image.page';
 import { MainService } from '../services/main/main.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,14 +29,15 @@ export class HomePage {
     private modalController: ModalController,
     private platform: Platform,
     private appComp: AppComponent,
-    private mainService: MainService
+    private mainService: MainService,
+    private router: Router
   ) {
     AnalyticsFirebase.setCurrentScreen('home')
       .then(() => console.log('View successfully tracked'))
       .catch(err => console.log('Error tracking view:', err));
-    this.platform.backButton.subscribe(() => {
+    /* this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
-    })
+    }) */
 
     /*this.storage.get('personalData').then(data=>{
       if(!data){
@@ -57,8 +59,10 @@ export class HomePage {
 
       AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
         this.sms.send('13033', code + ' ' + data.nameSurname + ' ' + data.address, { android: { intent: "INTENT" } }).then(() => {
+          this.mainService.addStat(code);
           //this.presentAlert(true).then(() => { })
         }).catch(err => {
+          this.mainService.addStat(code);
           this.presentAlert(false).then(() => { })
         })
       })
@@ -92,17 +96,18 @@ export class HomePage {
       } else {
         //emfanish eikonas
         AnalyticsFirebase.logEvent('Show_Image').finally(() => {
-          this.presentImageModal()
+          //this.presentImageModal()
+          this.router.navigate(['/showimage']);
         })
       }
     })
   }
 
-  async presentImageModal() {
+  /* async presentImageModal() {
     const modal = await this.modalController.create({
       component: ShowImagePage,
       swipeToClose: true
     });
     return await modal.present();
-  }
+  } */
 }

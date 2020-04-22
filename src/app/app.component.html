@@ -1,5 +1,5 @@
 <ion-app>
-    <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
+    <ion-menu swipeGesture="false" side="start" menuId="custom" contentId="main" class="my-custom-menu">
         <ion-header>
             <ion-toolbar color="primary">
                 <ion-title>{{'menu.title' | translate}}</ion-title>
@@ -17,11 +17,11 @@
                     {{'menu.employeesForm' | translate}}
                     <ion-radio hidden></ion-radio>
                 </ion-item>
-                <!-- <ion-item>
-                  <ion-icon color="dark" name="stats-chart" slot="start"></ion-icon>
-                  {{'menu.stats' | translate}}
-                  <ion-radio hidden></ion-radio>
-              </ion-item> -->
+                <ion-item (click)="onOpenStats()">
+                    <ion-icon color="dark" name="eye" slot="start"></ion-icon>
+                    {{'menu.stats' | translate}}
+                    <ion-radio hidden></ion-radio>
+                </ion-item>
                 <ion-item>
                     <ion-icon color="dark" name="language" slot="start"></ion-icon>
                     <ion-button (click)="useLanguage('el')">Ελληνικα</ion-button>

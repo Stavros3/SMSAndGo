@@ -1,7 +1,15 @@
+import { Time } from '@angular/common';
+
 export class Stats {
 
 	constructor(
-		code:number,
-		datetime:Date
+		public date:any,
+		public items:StatsItem[]
 	){}
+
+
+}
+
+export class StatsItem{
+	constructor(public code:number,public time:any){}
 }

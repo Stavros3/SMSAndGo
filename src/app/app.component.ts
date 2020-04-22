@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, ModalController, AlertController } from '@ionic/angular';
+import { Platform, AlertController, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,6 +8,8 @@ import { PersonalInfoPage } from './personal-info/personal-info.page';
 import { ImagesPage } from './images/images.page';
 import { MainService } from './services/main/main.service';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+import { Router } from '@angular/router';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +22,22 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public translate: TranslateService,
-    public modalController: ModalController,
+    //public modalController: ModalController,
     public alertController: AlertController,
-    public mainService: MainService
+    public mainService: MainService,
+    private router: Router,
+    private menu: MenuController
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(async () => {
+      this.platform.backButton.subscribe(async () => {
+        if (this.router.isActive('/home', true) && this.router.url === '/home') {
+          navigator['app'].exitApp();
+        }
+      });
       await AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
         AnalyticsFirebase.resetAnalyticsData()
       })
@@ -64,20 +73,29 @@ export class AppComponent {
     })
   }
 
-  async onOpenPersonalSettings() {
-    const modal = await this.modalController.create({
+  onOpenPersonalSettings() {
+    this.menu.close();
+    this.router.navigate(['editpersonalsettings'])
+    /* const modal = await this.modalController.create({
       component: PersonalInfoPage
     });
     AnalyticsFirebase.logEvent('Open_Edit_Personal_Data')
-    return await modal.present();
+    return await modal.present(); */
   }
 
-  async onOpenEditImages() {
-    const modal = await this.modalController.create({
+  onOpenEditImages() {
+    this.menu.close();
+    this.router.navigate(['editimage'])
+    /* const modal = await this.modalController.create({
       component: ImagesPage
     });
     AnalyticsFirebase.logEvent('Open_Edit_Image')
-    return await modal.present();
+    return await modal.present(); */
+  }
+
+  onOpenStats() {
+    this.menu.close();
+    this.router.navigate(['stats'])
   }
 
   clearAppData() {

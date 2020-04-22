@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { ModalController } from '@ionic/angular';
+//import { ModalController } from '@ionic/angular';
+//import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { MenuController } from '@ionic/angular';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 
 @Component({
   selector: 'app-show-image',
@@ -16,8 +20,11 @@ export class ShowImagePage implements OnInit {
   public imageData:any = '';
 
   constructor(private storage: Storage,
-    private modalCtrl:ModalController) {
-      
+    //private modalCtrl:ModalController,
+    private location: Location,
+    private menu: MenuController
+    ) {
+      AnalyticsFirebase.setCurrentScreen('view_image')
      }
 
  async ngOnInit() {
@@ -33,9 +40,11 @@ export class ShowImagePage implements OnInit {
   
   }
 
-  onBack() {
-    this.modalCtrl.dismiss({
+  async onBack() {
+    await this.menu.close()
+    this.location.back();
+    /* this.modalCtrl.dismiss({
       'dismissed': true
-    });
+    }); */
   }
 }

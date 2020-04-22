@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+//import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { MainService } from '../services/main/main.service';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+import { Location } from '@angular/common';
 //https://www.freecodecamp.org/news/how-to-make-image-upload-easy-with-angular-1ed14cb2773b/
+//https://www.appstorescreenshot.com/
 @Component({
   selector: 'app-images',
   templateUrl: './images.page.html',
@@ -14,9 +16,12 @@ export class ImagesPage implements OnInit {
   public imageExist: boolean = false;
   private selectedFile: ImageSnippet;
   constructor(public translate: TranslateService,
-    private modalCtrl: ModalController,
+    //private modalCtrl: ModalController,
+    private location: Location,
     private camera: Camera,
-    public mainService: MainService) { }
+    public mainService: MainService) { 
+      AnalyticsFirebase.setCurrentScreen('edit_image')
+    }
 
   ngOnInit() {
     this.mainService.getImage().then((data) => {
@@ -66,9 +71,10 @@ export class ImagesPage implements OnInit {
   }
 
   onBack() {
-    this.modalCtrl.dismiss({
+    this.location.back();
+    /* this.modalCtrl.dismiss({
       'dismissed': true
-    });
+    }); */
   }
 
   onDelete() {

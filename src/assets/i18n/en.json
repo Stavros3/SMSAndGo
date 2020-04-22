@@ -2,7 +2,7 @@
     "menu": {
         "title": "Menu",
         "editPerson": "Edit personal info",
-        "stats": "Stats",
+        "stats": "History",
         "employeesForm": "Permit For Employees",
         "showPermit": "Show Permit"
     },
@@ -48,5 +48,10 @@
         "imageExist": "Permit file has been saved",
         "imagenNotExist": "There is no permit file",
         "delete": "Delete Permit"
+    },
+    "stats": {
+        "title": "Has been sent code: ",
+        "empty": "You have not sent any SMS",
+        "clear": "Clear history"
     }
 }

@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Person } from '../models/person.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+//import { ModalController } from '@ionic/angular';
 import { MainService } from '../services/main/main.service';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-personal-info',
@@ -19,9 +20,11 @@ export class PersonalInfoPage implements OnInit {
   constructor(
     public translate: TranslateService,
     public formBuilder: FormBuilder,
-    private modalCtrl: ModalController,
-    public mainService: MainService) {
-
+    //private modalCtrl: ModalController,
+    public mainService: MainService,
+    private location: Location
+    ) {
+    AnalyticsFirebase.setCurrentScreen('edit_personal_info')
     this.personalInfoForm = this.formBuilder.group({
       nameSurname: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(80), Validators.minLength(2)])),
       address: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250), Validators.minLength(2)]))
@@ -42,17 +45,19 @@ export class PersonalInfoPage implements OnInit {
   onSave(value: Person) {
     this.mainService.setPersonData(value).then(async () => {
       AnalyticsFirebase.logEvent('Personal_Info_Saved').finally(() => {
-        this.modalCtrl.dismiss({
+        /* this.modalCtrl.dismiss({
           'dismissed': true
-        });
+        }); */
+        this.onBack();
       })
     })
   }
 
   onBack() {
-    this.modalCtrl.dismiss({
+    this.location.back();
+    /* this.modalCtrl.dismiss({
       'dismissed': true
-    });
+    }); */
   }
 
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appName: 'SMS And Go'
+  appName: 'SMS & Go'
 };
 
 /*

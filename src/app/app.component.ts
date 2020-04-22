@@ -74,7 +74,7 @@ export class AppComponent {
         this.mainService.setDefauldLang('el');
         this.translate.currentLang = 'el';
       }) */
-      this.statusBar.styleDefault();
+      this.statusBar.show();
       this.splashScreen.hide();
     })
   }

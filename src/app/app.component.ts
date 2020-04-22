@@ -28,6 +28,21 @@ export class AppComponent {
     private router: Router,
     private menu: MenuController
   ) {
+    this.mainService.getDefauldLang().then(data => {
+      if (data) {
+        this.translate.setDefaultLang(data);
+        this.translate.currentLang = data;
+        this.translate.currentLang = data;
+      } else {
+        this.translate.setDefaultLang('el');
+        this.mainService.setDefauldLang('el');
+        this.translate.currentLang = 'el';
+      }
+    }).catch(() => {
+      this.translate.setDefaultLang('el');
+      this.mainService.setDefauldLang('el');
+      this.translate.currentLang = 'el';
+    })
     this.initializeApp();
   }
 
@@ -44,7 +59,7 @@ export class AppComponent {
       await AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
         AnalyticsFirebase.resetAnalyticsData()
       })
-      this.mainService.getDefauldLang().then(data => {
+      /* this.mainService.getDefauldLang().then(data => {
         if (data) {
           this.translate.setDefaultLang(data);
           this.translate.currentLang = data;
@@ -58,7 +73,7 @@ export class AppComponent {
         this.translate.setDefaultLang('el');
         this.mainService.setDefauldLang('el');
         this.translate.currentLang = 'el';
-      })
+      }) */
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     })

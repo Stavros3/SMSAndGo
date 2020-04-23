@@ -3,12 +3,10 @@ import { environment } from 'src/environments/environment';
 import { SMS } from '@ionic-native/sms/ngx';
 import { MenuController, AlertController, ModalController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '@ionic/storage';
 import { Person } from '../models/person.model';
 import { PersonalInfoPage } from '../personal-info/personal-info.page';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { AppComponent } from '../app.component';
-import { ShowImagePage } from '../images/show-image/show-image.page';
 import { MainService } from '../services/main/main.service';
 import { Router } from '@angular/router';
 
@@ -27,7 +25,6 @@ export class HomePage {
     private translate: TranslateService,
     private alertController: AlertController,
     private modalController: ModalController,
-    private platform: Platform,
     private appComp: AppComponent,
     private mainService: MainService,
     private router: Router
@@ -35,15 +32,6 @@ export class HomePage {
     AnalyticsFirebase.setCurrentScreen('home')
       .then(() => console.log('View successfully tracked'))
       .catch(err => console.log('Error tracking view:', err));
-    /* this.platform.backButton.subscribe(() => {
-      navigator['app'].exitApp();
-    }) */
-
-    /*this.storage.get('personalData').then(data=>{
-      if(!data){
-        this.onOpenPersonalSettings();
-      }
-    }) */
   }
 
   public openMenu() {
@@ -96,18 +84,9 @@ export class HomePage {
       } else {
         //emfanish eikonas
         AnalyticsFirebase.logEvent('Show_Image').finally(() => {
-          //this.presentImageModal()
           this.router.navigate(['/showimage']);
         })
       }
     })
   }
-
-  /* async presentImageModal() {
-    const modal = await this.modalController.create({
-      component: ShowImagePage,
-      swipeToClose: true
-    });
-    return await modal.present();
-  } */
 }

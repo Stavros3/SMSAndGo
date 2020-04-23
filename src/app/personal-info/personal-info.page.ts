@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Person } from '../models/person.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-//import { ModalController } from '@ionic/angular';
 import { MainService } from '../services/main/main.service';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Location } from '@angular/common';
@@ -20,7 +19,6 @@ export class PersonalInfoPage implements OnInit {
   constructor(
     public translate: TranslateService,
     public formBuilder: FormBuilder,
-    //private modalCtrl: ModalController,
     public mainService: MainService,
     private location: Location
     ) {
@@ -45,9 +43,6 @@ export class PersonalInfoPage implements OnInit {
   onSave(value: Person) {
     this.mainService.setPersonData(value).then(async () => {
       AnalyticsFirebase.logEvent('Personal_Info_Saved').finally(() => {
-        /* this.modalCtrl.dismiss({
-          'dismissed': true
-        }); */
         this.onBack();
       })
     })
@@ -55,9 +50,6 @@ export class PersonalInfoPage implements OnInit {
 
   onBack() {
     this.location.back();
-    /* this.modalCtrl.dismiss({
-      'dismissed': true
-    }); */
   }
 
 }

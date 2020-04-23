@@ -7,9 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PersonalInfoPageRoutingModule } from './personal-info-routing.module';
 
 import { PersonalInfoPage } from './personal-info.page';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
 import { MainService } from '../services/main/main.service';
 
 @NgModule({
@@ -18,20 +16,10 @@ import { MainService } from '../services/main/main.service';
     FormsModule,
     IonicModule,
     PersonalInfoPageRoutingModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-    }),
+    TranslateModule.forChild(),
     ReactiveFormsModule
   ],
   declarations: [PersonalInfoPage],
   providers:[MainService]
 })
 export class PersonalInfoPageModule { }
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}

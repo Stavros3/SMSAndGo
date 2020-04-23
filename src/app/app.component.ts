@@ -22,26 +22,17 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public translate: TranslateService,
-    //public modalController: ModalController,
     public alertController: AlertController,
     public mainService: MainService,
     private router: Router,
     private menu: MenuController
   ) {
+    this.translate.setDefaultLang('el');
     this.mainService.getDefauldLang().then(data => {
       if (data) {
         this.translate.setDefaultLang(data);
         this.translate.currentLang = data;
-        this.translate.currentLang = data;
-      } else {
-        this.translate.setDefaultLang('el');
-        this.mainService.setDefauldLang('el');
-        this.translate.currentLang = 'el';
       }
-    }).catch(() => {
-      this.translate.setDefaultLang('el');
-      this.mainService.setDefauldLang('el');
-      this.translate.currentLang = 'el';
     })
     this.initializeApp();
   }
@@ -59,21 +50,6 @@ export class AppComponent {
       await AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
         AnalyticsFirebase.resetAnalyticsData()
       })
-      /* this.mainService.getDefauldLang().then(data => {
-        if (data) {
-          this.translate.setDefaultLang(data);
-          this.translate.currentLang = data;
-          this.translate.currentLang = data;
-        } else {
-          this.translate.setDefaultLang('el');
-          this.mainService.setDefauldLang('el');
-          this.translate.currentLang = 'el';
-        }
-      }).catch(() => {
-        this.translate.setDefaultLang('el');
-        this.mainService.setDefauldLang('el');
-        this.translate.currentLang = 'el';
-      }) */
       this.statusBar.show();
       this.splashScreen.hide();
     })
@@ -91,21 +67,11 @@ export class AppComponent {
   onOpenPersonalSettings() {
     this.menu.close();
     this.router.navigate(['editpersonalsettings'])
-    /* const modal = await this.modalController.create({
-      component: PersonalInfoPage
-    });
-    AnalyticsFirebase.logEvent('Open_Edit_Personal_Data')
-    return await modal.present(); */
   }
 
   onOpenEditImages() {
     this.menu.close();
     this.router.navigate(['editimage'])
-    /* const modal = await this.modalController.create({
-      component: ImagesPage
-    });
-    AnalyticsFirebase.logEvent('Open_Edit_Image')
-    return await modal.present(); */
   }
 
   onOpenStats() {

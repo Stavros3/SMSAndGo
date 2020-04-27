@@ -7,7 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { StatsPageRoutingModule } from './stats-routing.module';
 
 import { StatsPage } from './stats.page';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   imports: [
@@ -15,8 +17,18 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     StatsPageRoutingModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+    })
   ],
   declarations: [StatsPage]
 })
 export class StatsPageModule {}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}

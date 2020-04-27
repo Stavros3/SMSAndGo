@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -16,15 +16,16 @@ import { ShowImagePageModule } from './images/show-image/show-image.module';
 import { PersonalInfoPageModule } from './personal-info/personal-info.module';
 import { ImagesPageModule } from './images/images.module';
 import { MainService } from './services/main/main.service';
+import { Market } from '@ionic-native/market/ngx';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, 
-    IonicModule.forRoot(), 
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     TranslateModule.forRoot({
-      loader: { 
+      loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
@@ -41,12 +42,24 @@ import { MainService } from './services/main/main.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     HttpClient,
-    MainService
+    MainService,
+    Market,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [MainService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-  }
+}
+
+export function initializeApp(
+  initapp: MainService): Function {
+  return () => initapp.init();
+}

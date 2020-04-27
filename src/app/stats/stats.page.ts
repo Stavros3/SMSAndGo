@@ -13,11 +13,13 @@ import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 })
 export class StatsPage implements OnInit {
   public stats: Stats[] = [];
+  public country:string = 'gr';
   constructor(public translate: TranslateService,
     public main: MainService,
     private location: Location,
     public alertController: AlertController) {
       AnalyticsFirebase.setCurrentScreen('view_stats')
+      this.country = this.main.getCoutnry();
   }
 
   async ngOnInit() {
@@ -31,10 +33,12 @@ export class StatsPage implements OnInit {
     });
   }
 
-  async onDelete() {
+  async onDelete() {    
+    
     this.translate.getTranslation(this.translate.currentLang).subscribe(async (data) => {
+      
       const alert = await this.alertController.create({
-        header: data.stats.clear,
+        header: data.clearData.title,
         buttons: [{
           text: data.yes,
           handler: async () => {

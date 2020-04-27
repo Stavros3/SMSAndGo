@@ -20,6 +20,6 @@ import { MainService } from '../services/main/main.service';
     ReactiveFormsModule
   ],
   declarations: [PersonalInfoPage],
-  providers:[MainService]
+  providers:[]
 })
 export class PersonalInfoPageModule { }

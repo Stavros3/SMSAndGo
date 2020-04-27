@@ -20,6 +20,7 @@ export class HomePage {
 
   public title: string = environment.appName;
   public alertMsgs: any;
+  public country: string = '';
   constructor(private sms: SMS,
     private menu: MenuController,
     private translate: TranslateService,
@@ -31,7 +32,11 @@ export class HomePage {
   ) {
     AnalyticsFirebase.setCurrentScreen('home')
       .then(() => console.log('View successfully tracked'))
-      .catch(err => console.log('Error tracking view:', err));
+      .catch(err => console.log('Error tracking view:', err));      
+  }
+
+  ionViewWillEnter() {    
+    this.country = this.mainService.getCoutnry();    
   }
 
   public openMenu() {
@@ -40,13 +45,20 @@ export class HomePage {
   }
 
   public send(code: number) {
+    let smsNumber: string;
     this.mainService.getPersonData().then((data: Person) => {
       if (!data) {
         this.onOpenPersonalSettings();
       }
 
       AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
-        this.sms.send('13033', code + ' ' + data.nameSurname + ' ' + data.address, { android: { intent: "INTENT" } }).then(() => {
+
+        if (this.country == 'gr') {
+          smsNumber = '13033';
+        } else {
+          smsNumber = '8998';
+        }
+        this.sms.send(smsNumber, code + ' ' + data.nameSurname + ' ' + data.address, { android: { intent: "INTENT" } }).then(() => {
           this.mainService.addStat(code);
           //this.presentAlert(true).then(() => { })
         }).catch(err => {
@@ -58,7 +70,7 @@ export class HomePage {
   }
 
   async presentAlert(status: boolean) {
-    this.translate.getTranslation(this.translate.currentLang).subscribe(async (data) => {
+    this.translate.getTranslation(this.translate.currentLang).subscribe(async (data) => {      
       this.alertMsgs = data;
       const alert = await this.alertController.create({
         header: (status ? this.alertMsgs.sendAlert.successTitle : this.alertMsgs.sendAlert.errorTitle),

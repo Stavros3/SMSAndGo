@@ -5,7 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SMS } from '@ionic-native/sms/ngx';
 import { HomePage } from './home.page';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   imports: [
@@ -19,7 +21,13 @@ import { TranslateModule } from '@ngx-translate/core';
         component: HomePage
       }
     ]),
-    TranslateModule.forChild()
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+    })
 
   ],
   declarations: [HomePage],
@@ -27,3 +35,6 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class HomePageModule { }
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}

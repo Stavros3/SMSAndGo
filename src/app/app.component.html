@@ -22,6 +22,11 @@
                     {{'menu.stats' | translate}}
                     <ion-radio hidden></ion-radio>
                 </ion-item>
+                <ion-item (click)="onRateApp()">
+                    <ion-icon color="dark" name="star-half" slot="start"></ion-icon>
+                    {{'menu.rate' | translate}}
+                    <ion-radio hidden></ion-radio>
+                </ion-item>
                 <ion-item>
                     <ion-icon color="dark" name="language" slot="start"></ion-icon>
                     <ion-button (click)="useLanguage('el')">Ελληνικα</ion-button>

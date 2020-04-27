@@ -34,14 +34,26 @@
                 <ion-avatar *ngIf="item.code == 3" slot="start">
                     <ion-icon class="mySize" color="success" name="cash"></ion-icon>
                 </ion-avatar>
-                <ion-avatar *ngIf="item.code == 4" slot="start">
+                <ion-avatar *ngIf="item.code == 4 && country == 'gr'" slot="start">
                     <ion-icon class="mySize" color="tertiary" name="body"></ion-icon>
                 </ion-avatar>
-                <ion-avatar *ngIf="item.code == 5" slot="start">
+                <ion-avatar *ngIf="item.code == 4 && country == 'cy'" slot="start">
+                    <ion-icon class="mySize" color="warning" name="business"></ion-icon>
+                </ion-avatar>
+                <ion-avatar *ngIf="item.code == 5 && country == 'gr'" slot="start">
                     <ion-icon class="mySize" color="warning" name="chatbubbles"></ion-icon>
+                </ion-avatar>
+                <ion-avatar *ngIf="item.code == 5 && country == 'cy'" slot="start">
+                    <ion-icon class="mySize" color="tertiary" name="body"></ion-icon>
                 </ion-avatar>
                 <ion-avatar *ngIf="item.code == 6" slot="start">
                     <ion-icon class="mySize" color="dark" name="bicycle"></ion-icon>
+                </ion-avatar>
+                <ion-avatar *ngIf="item.code == 7" slot="start">
+                    <ion-icon class="mySize" color="warning" name="chatbubbles"></ion-icon>
+                </ion-avatar>
+                <ion-avatar *ngIf="item.code == 8" slot="start">
+                    <ion-icon class="mySize" color="tertiary" name="swap-horizontal"></ion-icon>
                 </ion-avatar>
                 <ion-label>
                     <h2>{{'stats.title' | translate}}#{{item.code}}</h2>

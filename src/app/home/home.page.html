@@ -22,7 +22,8 @@
             </ion-item>
         </ion-card-header>
         <ion-card-content>
-            <ion-label text-wrap>{{'sendCodes.1' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'gr'" text-wrap>{{'sendCodes.gr.1' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'cy'" text-wrap>{{'sendCodes.cy.1' | translate}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -34,7 +35,8 @@
             </ion-item>
         </ion-card-header>
         <ion-card-content>
-            <ion-label text-wrap>{{'sendCodes.2' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'gr'" text-wrap>{{'sendCodes.gr.2' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'cy'" text-wrap>{{'sendCodes.cy.2' | translate}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -46,31 +48,36 @@
             </ion-item>
         </ion-card-header>
         <ion-card-content>
-            <ion-label text-wrap>{{'sendCodes.3' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'gr'" text-wrap>{{'sendCodes.gr.3' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'cy'" text-wrap>{{'sendCodes.cy.3' | translate}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
         <ion-card-header>
             <ion-item (click)="send(4)" detail='true'>
-                <ion-icon color="tertiary" name="body" slot="start"></ion-icon>
+                <ion-icon *ngIf="country == 'cy'" color="warning" name="business" slot="start"></ion-icon>
+                <ion-icon *ngIf="country == 'gr'" color="tertiary" name="body" slot="start"></ion-icon>
                 <ion-card-title>{{'sendCode' | translate}} #4</ion-card-title>
                 <ion-radio hidden></ion-radio>
             </ion-item>
         </ion-card-header>
         <ion-card-content>
-            <ion-label text-wrap>{{'sendCodes.4' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'gr'" text-wrap>{{'sendCodes.gr.4' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'cy'" text-wrap>{{'sendCodes.cy.4' | translate}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
         <ion-card-header>
             <ion-item (click)="send(5)" detail='true'>
-                <ion-icon color="warning" name="chatbubbles" slot="start"></ion-icon>
+                <ion-icon *ngIf="country == 'cy'" color="tertiary" name="body" slot="start"></ion-icon>
+                <ion-icon *ngIf="country == 'gr'" color="warning" name="chatbubbles" slot="start"></ion-icon>
                 <ion-card-title>{{'sendCode' | translate}} #5</ion-card-title>
                 <ion-radio hidden></ion-radio>
             </ion-item>
         </ion-card-header>
         <ion-card-content>
-            <ion-label text-wrap>{{'sendCodes.5' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'gr'" text-wrap>{{'sendCodes.gr.5' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'cy'" text-wrap>{{'sendCodes.cy.5' | translate}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -82,7 +89,32 @@
             </ion-item>
         </ion-card-header>
         <ion-card-content>
-            <ion-label text-wrap>{{'sendCodes.6' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'gr'" text-wrap>{{'sendCodes.gr.6' | translate}}</ion-label>
+            <ion-label *ngIf="country == 'cy'" text-wrap>{{'sendCodes.cy.6' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="country == 'cy'">
+        <ion-card-header>
+            <ion-item (click)="send(7)" detail='true'>
+                <ion-icon color="warning" name="chatbubbles" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #7</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.cy.7' | translate}}</ion-label>
+        </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="country == 'cy'">
+        <ion-card-header>
+            <ion-item (click)="send(8)" detail='true'>
+                <ion-icon color="tertiary" name="swap-horizontal" slot="start"></ion-icon>
+                <ion-card-title>{{'sendCode' | translate}} #8</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label text-wrap>{{'sendCodes.cy.8' | translate}}</ion-label>
         </ion-card-content>
     </ion-card>
 </ion-content>

@@ -4,7 +4,8 @@
         "editPerson": "Edit personal info",
         "stats": "History",
         "employeesForm": "Permit For Employees",
-        "showPermit": "Show Permit"
+        "showPermit": "Show Permit",
+        "rate": "Rate us!"
     },
     "sendAlert": {
         "successTitle": "Success",
@@ -13,12 +14,24 @@
         "errorMsg": "SMS has not been send"
     },
     "sendCodes": {
-        "1": "Going to the pharmacy or visiting a Medical Doctor, in the case that this is recommended after consultation.",
-        "2": "Going to a supply store in operation (super markets, mini markets etc), which can not ship or deliver its goods.",
-        "3": "Going to the bank, when electronic transactions are not possible.",
-        "4": "Going to help people in need.",
-        "5": "Going to a ceremony (e.g., funeral, marriage, baptism) under the conditions provided by law; or movement of divorced or legally separated parents in the context of parental responsibility, custody, or visiting rights in accordance with the applicable provisions.",
-        "6": "Physical exercise in an open space or for a pet’s needs, individually or up to 2 people. In the latter case, a minimum distance of 1.5 meters must be kept at all times."
+        "gr": {
+            "1": "Going to the pharmacy or visiting a Medical Doctor, in the case that this is recommended after consultation.",
+            "2": "Going to a supply store in operation (super markets, mini markets etc), which can not ship or deliver its goods.",
+            "3": "Going to the bank, when electronic transactions are not possible.",
+            "4": "Going to help people in need.",
+            "5": "Going to a ceremony (e.g., funeral, marriage, baptism) under the conditions provided by law; or movement of divorced or legally separated parents in the context of parental responsibility, custody, or visiting rights in accordance with the applicable provisions.",
+            "6": "Physical exercise in an open space or for a pet’s needs, individually or up to 2 people. In the latter case, a minimum distance of 1.5 meters must be kept at all times."
+        },
+        "cy": {
+            "1": "Visit to a pharmacy, blood donation center or a doctor",
+            "2": "Visit to a store to buy essential goods / services",
+            "3": "Visit to a bank, provided that electronic transactions are not possible",
+            "4": "Absolutely necessary visits to government services or services of the wider public sector and local government",
+            "5": "Movement with the purpose of assisting people who are unable to serve or protect themselves or who are in self-confinement and / or compulsory confinement (quarantine)",
+            "6": "Movement for physical activity or for the needs of a pet, alone or in a group of no more than two persons and in areas adjacent to their homes",
+            "7": "Movement with the purpose of attending a ceremony (e.g. funeral, wedding, christening) of first and second degree relatives, not exceeding 10 persons",
+            "8": "Movement for any other purpose which may be justified under the prohibition of movement measures"
+        }
     },
     "sendCode": "Send SMS. Code:",
     "personalInfo": {
@@ -53,5 +66,13 @@
         "title": "Has been sent code: ",
         "empty": "You have not sent any SMS",
         "clear": "Clear history"
+    },
+    "country": {
+        "countryName": "Country",
+        "countrySelect": "Select Country",
+        "greece": "Greece",
+        "cyprus": "Cyprus",
+        "apodiktiko": "Identification proof number",
+        "postcode": "Postal code of residence"
     }
 }

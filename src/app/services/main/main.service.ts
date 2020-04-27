@@ -4,13 +4,16 @@ import { Person } from 'src/app/models/person.model';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Stats, StatsItem } from 'src/app/models/Stats.model';
 import * as moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-
-  constructor(private storage: Storage) { }
+  private country: string;
+  private lang: string;
+  constructor(private storage: Storage,
+    public translate: TranslateService) { }
 
   saveImage(data: any): Promise<any> {
     return this.storage.set('imagePermit', data);
@@ -25,12 +28,13 @@ export class MainService {
     return this.storage.remove('imagePermit');
   }
 
-  getDefauldLang(): Promise<any> {
-    return this.storage.get('langDefault');
-  }
+ /*  getDefauldLang() {
+    return this.lang;
+  } */
 
   async setDefauldLang(data: string): Promise<any> {
     await AnalyticsFirebase.logEvent('Language_Change', { lang: data });
+    this.lang = data;
     return this.storage.set('langDefault', data);
   }
 
@@ -39,6 +43,7 @@ export class MainService {
   }
 
   setPersonData(data: Person): Promise<Person> {
+    this.country = data.country;    
     return this.storage.set('personalData', data);
   }
 
@@ -48,8 +53,7 @@ export class MainService {
   }
 
   async addStat(code: number) {
-    let lang: string;
-    await this.getDefauldLang().then(data => lang = data);
+    let lang: string = this.translate.currentLang;
     moment.locale(lang);
     let stats: Stats[] = [];
     let date = moment().format('L');
@@ -71,7 +75,6 @@ export class MainService {
     });
 
     await this.storage.set('stats', stats).then(data => {
-      console.log(data);
     });
   }
 
@@ -82,4 +85,39 @@ export class MainService {
   clearStats(): Promise<void> {
     return this.storage.remove('stats');
   }
+
+  async init() {
+    await this.storage.get('personalData').then( async(data: Person) => {
+      if (data) {
+        if(data.nameSurname && !data.country){
+          await this.storage.set('personalData',new Person(data.nameSurname,data.address,'gr'))
+          this.country = 'gr';
+        } else {
+          this.country = data.country;
+        }
+      } else {
+        this.country = 'gr';
+      }      
+    })
+    await this.storage.get('langDefault').then(data => {
+      
+      if(data){
+        this.translate.setDefaultLang(data);
+        this.translate.currentLang = data;
+      } else {
+        this.translate.setDefaultLang('el');
+        this.translate.currentLang = 'el';
+      }
+      this.lang = this.translate.currentLang;
+    })
+  }
+
+  getCoutnry() {
+    return (this.country ? this.country : 'gr');
+  }
+
+  setCountry(value:string){
+    this.country = value;
+  }
+
 }

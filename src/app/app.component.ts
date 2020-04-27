@@ -4,12 +4,10 @@ import { Platform, AlertController, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { PersonalInfoPage } from './personal-info/personal-info.page';
-import { ImagesPage } from './images/images.page';
 import { MainService } from './services/main/main.service';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Router } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
+import { Market } from '@ionic-native/market/ngx';
 
 @Component({
   selector: 'app-root',
@@ -25,15 +23,12 @@ export class AppComponent {
     public alertController: AlertController,
     public mainService: MainService,
     private router: Router,
-    private menu: MenuController
+    private menu: MenuController,
+    private market: Market
   ) {
-    this.translate.setDefaultLang('el');
-    this.mainService.getDefauldLang().then(data => {
-      if (data) {
-        this.translate.setDefaultLang(data);
-        this.translate.currentLang = data;
-      }
-    })
+    
+    //this.translate.setDefaultLang('el');
+    //this.translate.currentLang = this.mainService.getDefauldLang();    
     this.initializeApp();
   }
 
@@ -45,10 +40,10 @@ export class AppComponent {
         }
       });
       await AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
-        AnalyticsFirebase.resetAnalyticsData()
+        //AnalyticsFirebase.resetAnalyticsData()
       })
       await AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
-        AnalyticsFirebase.resetAnalyticsData()
+        //AnalyticsFirebase.resetAnalyticsData()
       })
       this.statusBar.show();
       this.splashScreen.hide();
@@ -81,5 +76,12 @@ export class AppComponent {
 
   clearAppData() {
     this.mainService.clearAll();
+  }
+
+  async onRateApp() {
+    await AnalyticsFirebase.logEvent('Rate_us').catch(() => {
+    })
+    this.market.open('io.smsngo.starter');
+
   }
 }

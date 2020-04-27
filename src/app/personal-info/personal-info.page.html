@@ -10,13 +10,30 @@
 <ion-content>
     <form [formGroup]="personalInfoForm" (ngSubmit)="onSave(personalInfoForm.value)" novalidate>
         <ion-item>
-            <ion-label position="floating">{{'personalInfo.nameSurname' | translate}}</ion-label>
+            <ion-label *ngIf="countryClicked == 'gr'" position="floating">{{'personalInfo.nameSurname' | translate}}</ion-label>
+            <ion-label *ngIf="countryClicked == 'cy'" position="floating">{{'country.apodiktiko' | translate}}</ion-label>
             <ion-input formControlName="nameSurname" type="text"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label position="floating">{{'personalInfo.address' | translate}}</ion-label>
+            <ion-label *ngIf="countryClicked == 'gr'" position="floating">{{'personalInfo.address' | translate}}</ion-label>
+            <ion-label *ngIf="countryClicked == 'cy'" position="floating">{{'country.postcode' | translate}}</ion-label>
             <ion-input formControlName="address" type="text"></ion-input>
         </ion-item>
+        <ion-list>
+            <ion-radio-group value="biff" formControlName="country">
+                <ion-list-header>
+                    <ion-label>{{'country.countryName' | translate}}</ion-label>
+                </ion-list-header>
+                <ion-item>
+                    <ion-label>{{'country.greece' | translate}}</ion-label>
+                    <ion-radio value="gr" (click)="onCountryChange('gr')" slot="start"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'country.cyprus' | translate}}</ion-label>
+                    <ion-radio value="cy" (click)="onCountryChange('cy')" slot="start"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-list>
         <ion-button expand="full" [disabled]="!personalInfoForm.valid" type="submit">{{'save' | translate}}</ion-button>
     </form>
     <ion-button color="danger" *ngIf="showBack" expand="full" (click)="onBack()">{{'back' | translate}}</ion-button>

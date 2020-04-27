@@ -16,16 +16,20 @@ export class PersonalInfoPage implements OnInit {
   public address: string;
   public personalInfoForm: FormGroup;
   public showBack: boolean = false;
+  public country: string = "gr"
+  public countryClicked: string = "gr"
+  private firstTime: boolean = true;
   constructor(
     public translate: TranslateService,
     public formBuilder: FormBuilder,
     public mainService: MainService,
     private location: Location
-    ) {
+  ) {
     AnalyticsFirebase.setCurrentScreen('edit_personal_info')
     this.personalInfoForm = this.formBuilder.group({
       nameSurname: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(80), Validators.minLength(2)])),
-      address: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250), Validators.minLength(2)]))
+      address: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250), Validators.minLength(2)])),
+      country: new FormControl('', Validators.compose([Validators.required]))
     })
 
 
@@ -34,7 +38,10 @@ export class PersonalInfoPage implements OnInit {
   ngOnInit() {
     this.mainService.getPersonData().then((data: Person) => {
       if (data) {
-        this.personalInfoForm.setValue({ nameSurname: data.nameSurname, address: data.address })
+        this.country = data.country;
+        this.countryClicked = data.country;
+        this.firstTime = false;
+        this.personalInfoForm.setValue({ nameSurname: data.nameSurname, address: data.address, country: data.country })
         this.showBack = true;
       }
     })
@@ -42,14 +49,20 @@ export class PersonalInfoPage implements OnInit {
 
   onSave(value: Person) {
     this.mainService.setPersonData(value).then(async () => {
-      AnalyticsFirebase.logEvent('Personal_Info_Saved').finally(() => {
-        this.onBack();
-      })
+      await AnalyticsFirebase.logEvent('Personal_Info_Saved')
+
+      if (value.country != this.country || this.firstTime) {
+        await AnalyticsFirebase.logEvent('Country_Change', { country: value.country });
+      }
+      this.onBack();
     })
+  }
+
+  onCountryChange(data: string) {
+    this.countryClicked = data;
   }
 
   onBack() {
     this.location.back();
   }
-
 }

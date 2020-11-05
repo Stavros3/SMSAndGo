@@ -38,4 +38,52 @@
         <ion-label *ngIf="imageExist">{{'editPermit.imageExist' | translate}}</ion-label>
     </ion-item>
     <ion-button color="danger" *ngIf="imageExist" expand="full" (click)="onDelete()">{{'editPermit.delete' | translate}}</ion-button>
+
+    <ion-list>
+        <ion-list-header>
+            <ion-label>{{'editPermit.docs.downloadDocs' | translate}}</ion-label>
+        </ion-list-header>
+        <ion-item class="ion-activatable ripple-parent">
+            <ion-icon slot="start" name="cloud-download"></ion-icon>
+            <ion-label text-wrap onclick="window.open('https://forma.gov.gr/docs/vevaiosi-kikloforias.pdf', '_system', 'location=yes'); return false;">
+                {{'editPermit.docs.docPermitWorkerPDF' | translate}}
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item class="ion-activatable ripple-parent">
+            <ion-icon slot="start" name="cloud-download"></ion-icon>
+            <ion-label text-wrap onclick="window.open('https://forma.gov.gr/docs/vevaiosi-kikloforias.docx', '_system', 'location=yes'); return false;">
+                {{'editPermit.docs.docPermitWorkerDOCX' | translate}}
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item class="ion-activatable ripple-parent">
+            <ion-icon slot="start" name="cloud-download"></ion-icon>
+            <ion-label text-wrap onclick="window.open('https://forma.gov.gr/docs/formes-mathites-anilikoi.pdf', '_system', 'location=yes'); return false;">
+                {{'editPermit.docs.docPermitStudentKidPDF' | translate}}
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item class="ion-activatable ripple-parent">
+            <ion-icon slot="start" name="cloud-download"></ion-icon>
+            <ion-label text-wrap onclick="window.open('https://forma.gov.gr/docs/formes-mathites-anilikoi.docx', '_system', 'location=yes'); return false;">
+                {{'editPermit.docs.docPermitStudentKidDOCX' | translate}}
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item class="ion-activatable ripple-parent">
+            <ion-icon slot="start" name="cloud-download"></ion-icon>
+            <ion-label text-wrap onclick="window.open('https://forma.gov.gr/docs/formes-mathites-enilikoi.pdf', '_system', 'location=yes'); return false;">
+                {{'editPermit.docs.docPermitStudentAdultPDF' | translate}}
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+        <ion-item class="ion-activatable ripple-parent">
+            <ion-icon slot="start" name="cloud-download"></ion-icon>
+            <ion-label text-wrap onclick="window.open('https://forma.gov.gr/docs/formes-mathites-enilikoi.docx', '_system', 'location=yes'); return false;">
+                {{'editPermit.docs.docPermitStudentAdultDOCX' | translate}}
+            </ion-label>
+            <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -3,8 +3,8 @@
         "title": "Menu",
         "editPerson": "Edit personal info",
         "stats": "History",
-        "employeesForm": "Permit For Employees",
-        "showPermit": "Show Permit",
+        "employeesForm": "Transfer Permit Doc",
+        "showPermit": "Show Permit Doc",
         "rate": "Rate us!"
     },
     "sendAlert": {
@@ -18,8 +18,8 @@
             "1": "Going to the pharmacy or visiting a Medical Doctor, in the case that this is recommended after consultation.",
             "2": "Going to a supply store in operation (super markets, mini markets etc), which can not ship or deliver its goods.",
             "3": "Going to the bank, when electronic transactions are not possible.",
-            "4": "Going to help people in need.",
-            "5": "Going to a ceremony (e.g., funeral, marriage, baptism) under the conditions provided by law; or movement of divorced or legally separated parents in the context of parental responsibility, custody, or visiting rights in accordance with the applicable provisions.",
+            "4": "Going to help people in need. Student accompaniment to or from school.",
+            "5": "Going on funeral under the conditions provided by law; or movement of divorced or legally separated parents in the context of parental responsibility, custody, or visiting rights in accordance with the applicable provisions.",
             "6": "Physical exercise in an open space or for a pet’s needs, individually or up to 2 people. In the latter case, a minimum distance of 1.5 meters must be kept at all times."
         },
         "cy": {
@@ -54,13 +54,22 @@
     "back": "Back",
     "editPermit": {
         "title": "Permit Form",
-        "body": "Add or edit your permit form, form your employer",
+        "body": "Add or edit your transfer permit form",
         "fromCamera": "Take picture",
         "fromFile": "Select file",
         "or": "or",
         "imageExist": "Permit file has been saved",
         "imagenNotExist": "There is no permit file",
-        "delete": "Delete Permit"
+        "delete": "Delete Permit",
+        "docs": {
+            "downloadDocs": "Download Docs",
+            "docPermitWorkerPDF": "Worker permit (PDF)",
+            "docPermitWorkerDOCX": "Worker permit (DOCX)",
+            "docPermitStudentKidPDF": "Minor student permit (PDF)",
+            "docPermitStudentKidDOCX": "Minor student permit (DOCX)",
+            "docPermitStudentAdultPDF": "Adult student permit (PDF)",
+            "docPermitStudentAdultDOCX": "Adult student permit (DOCX)"
+        }
     },
     "stats": {
         "title": "Has been sent code: ",

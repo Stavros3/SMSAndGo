@@ -49,6 +49,8 @@ export class HomePage {
     this.mainService.getPersonData().then((data: Person) => {
       if (!data) {
         this.onOpenPersonalSettings();
+        
+        return;
       }
 
       AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code }).finally(() => {

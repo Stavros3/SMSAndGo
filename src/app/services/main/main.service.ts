@@ -33,7 +33,7 @@ export class MainService {
   } 
 
   async setDefauldLang(data: string): Promise<any> {
-    //await AnalyticsFirebase.logEvent('Language_Change', { lang: data });
+    await AnalyticsFirebase.logEvent('Language_Change', { lang: data });
     this.lang = data;
     return this.storage.set('langDefault', data);
   }

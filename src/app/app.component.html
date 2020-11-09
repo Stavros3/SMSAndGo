@@ -22,7 +22,7 @@
                     {{'menu.stats' | translate}}
                     <ion-radio hidden></ion-radio>
                 </ion-item>
-                <ion-item (click)="onRateApp()">
+                <ion-item *ngIf="platform.is('android')" (click)="onRateApp()">
                     <ion-icon color="dark" name="star-half" slot="start"></ion-icon>
                     {{'menu.rate' | translate}}
                     <ion-radio hidden></ion-radio>
@@ -35,6 +35,11 @@
                         <ion-select-option value="ar">العربية</ion-select-option>
                     </ion-select>
                     <ion-icon color="dark" name="language" slot="start"></ion-icon>
+                </ion-item>
+                <ion-item (click)="specialThnx()">
+                    <ion-icon color="dark" name="heart" slot="start"></ion-icon>
+                    Special Thanks
+                    <ion-radio hidden></ion-radio>
                 </ion-item>
             </ion-list>
         </ion-content>

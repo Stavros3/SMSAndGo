@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { Platform, AlertController, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -8,6 +8,7 @@ import { MainService } from './services/main/main.service';
 import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Router } from '@angular/router';
 import { Market } from '@ionic-native/market/ngx';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,9 @@ import { Market } from '@ionic-native/market/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  private selectLang: string = 'el';
+  public selectLang: string = 'el';
   constructor(
-    private platform: Platform,
+    public platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public translate: TranslateService,
@@ -25,14 +26,18 @@ export class AppComponent {
     public mainService: MainService,
     private router: Router,
     private menu: MenuController,
-    private market: Market
+    private market: Market,
+    @Inject(DOCUMENT) private document: Document
   ) {
-    
     //this.translate.setDefaultLang('el');
     //this.translate.currentLang = this.mainService.getDefauldLang();  
     this.selectLang = this.mainService.getDefauldLang();
-    console.log(this.selectLang);
     
+    if (this.selectLang == 'ar') {
+        this.document.documentElement.dir = 'rtl';
+      } else {
+        this.document.documentElement.dir = 'ltr';
+      }
     this.initializeApp();
   }
 
@@ -60,6 +65,12 @@ export class AppComponent {
     this.mainService.setDefauldLang(language).then(data => {
       this.translate.use(language);
       this.translate.currentLang = language;
+      
+      if (language == 'ar') {
+        this.document.documentElement.dir = 'rtl';
+      } else {
+        this.document.documentElement.dir = 'ltr';
+      }
     })
   }
 
@@ -86,6 +97,29 @@ export class AppComponent {
     await AnalyticsFirebase.logEvent('Rate_us').catch(() => {
     })
     this.market.open('io.smsngo.starter');
+  }
 
+  async specialThnx() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Special Thanks',
+      subHeader: '',
+      message: `
+        <p>
+          <a href="https://progressnet.gr/" target="_system" >ProgressNet.gr</a> for publish on App Store 
+        </p>
+        <p>
+          KAMEL ZEINEDDIN (kkamelzain@gmail.com) for Arab translation
+        </p>
+      `,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  test(t: string) {
+    console.log(t);
+    
   }
 }

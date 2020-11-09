@@ -28,9 +28,13 @@
                     <ion-radio hidden></ion-radio>
                 </ion-item>
                 <ion-item>
+                    <!-- <ion-label>{{'language' | translate}}</ion-label> -->
+                    <ion-select (ionChange)="useLanguage($event.target.value)" style="padding-left: 0%; max-width: 100%;" [value]="selectLang" okText="OK" cancelText="{{'back' | translate}}">
+                        <ion-select-option value="el">Ελληνικα</ion-select-option>
+                        <ion-select-option value="en">English</ion-select-option>
+                        <ion-select-option value="ar">العربية</ion-select-option>
+                    </ion-select>
                     <ion-icon color="dark" name="language" slot="start"></ion-icon>
-                    <ion-button (click)="useLanguage('el')">Ελληνικα</ion-button>
-                    <ion-button (click)="useLanguage('en')">English</ion-button>
                 </ion-item>
             </ion-list>
         </ion-content>

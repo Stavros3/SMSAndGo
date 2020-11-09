@@ -15,6 +15,7 @@ import { Market } from '@ionic-native/market/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  private selectLang: string = 'el';
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -28,7 +29,10 @@ export class AppComponent {
   ) {
     
     //this.translate.setDefaultLang('el');
-    //this.translate.currentLang = this.mainService.getDefauldLang();    
+    //this.translate.currentLang = this.mainService.getDefauldLang();  
+    this.selectLang = this.mainService.getDefauldLang();
+    console.log(this.selectLang);
+    
     this.initializeApp();
   }
 
@@ -52,7 +56,7 @@ export class AppComponent {
   ionViewDidLeave() {
   }
 
-  useLanguage(language: string) {
+  useLanguage(language: string) {    
     this.mainService.setDefauldLang(language).then(data => {
       this.translate.use(language);
       this.translate.currentLang = language;

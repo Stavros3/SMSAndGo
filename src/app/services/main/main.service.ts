@@ -28,9 +28,9 @@ export class MainService {
     return this.storage.remove('imagePermit');
   }
 
- /*  getDefauldLang() {
+  getDefauldLang() {
     return this.lang;
-  } */
+  } 
 
   async setDefauldLang(data: string): Promise<any> {
     await AnalyticsFirebase.logEvent('Language_Change', { lang: data });

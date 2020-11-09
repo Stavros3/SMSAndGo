@@ -48,6 +48,7 @@
         "title": "Clear Data",
         "description": "Data will be deleted. Are sure?"
     },
+    "language": "Language",
     "exit": "Exit",
     "yes": "Yes",
     "no": "No",

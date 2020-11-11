@@ -113,8 +113,7 @@
             "cordova-plugin-wkwebviewxhrfix": {}
         },
         "platforms": [
-            "android",
-            "ios"
+            "android"
         ]
     }
 }

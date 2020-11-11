@@ -5,8 +5,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { MainService } from '../services/main/main.service';
 //import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Location } from '@angular/common';
-//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Component({
   selector: 'app-personal-info',
@@ -26,9 +26,9 @@ export class PersonalInfoPage implements OnInit {
     public formBuilder: FormBuilder,
     public mainService: MainService,
     private location: Location,
-    private firebaseX: FirebaseX
+    private firebaseAnalytics: FirebaseAnalytics
   ) {
-    this.firebaseX.setScreenName('edit_personal_info')
+    this.firebaseAnalytics.setCurrentScreen('edit_personal_info')
     this.personalInfoForm = this.formBuilder.group({
       nameSurname: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(80), Validators.minLength(2)])),
       address: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250), Validators.minLength(2)])),
@@ -52,10 +52,10 @@ export class PersonalInfoPage implements OnInit {
 
   onSave(value: Person) {
     this.mainService.setPersonData(value).then(async () => {
-      this.firebaseX.logEvent('Personal_Info_Saved',{})
+      this.firebaseAnalytics.logEvent('Personal_Info_Saved',{})
 
       if (value.country != this.country || this.firstTime) {
-        this.firebaseX.logEvent('Country_Change', { country: value.country });
+        this.firebaseAnalytics.logEvent('Country_Change', { country: value.country });
       }
       this.onBack();
     })

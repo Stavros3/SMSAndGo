@@ -9,7 +9,7 @@ import { PersonalInfoPage } from '../personal-info/personal-info.page';
 import { AppComponent } from '../app.component';
 import { MainService } from '../services/main/main.service';
 import { Router } from '@angular/router';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 //import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Component({
@@ -31,11 +31,9 @@ export class HomePage {
     private appComp: AppComponent,
     private mainService: MainService,
     private router: Router,
-    private firebaseX: FirebaseX
+    private firebaseAnalytics: FirebaseAnalytics
   ) {
-    this.firebaseX.setScreenName('home')
-      .then(() => console.log('View successfully tracked'))
-      .catch(err => console.log('Error tracking view:', err));      
+    this.firebaseAnalytics.setCurrentScreen('home')     
   }
 
   ionViewWillEnter() {    
@@ -56,7 +54,7 @@ export class HomePage {
         return;
       }
 
-      this.firebaseX.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
+      this.firebaseAnalytics.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
 
         if (this.country == 'gr') {
           smsNumber = '13033';
@@ -100,7 +98,7 @@ export class HomePage {
         this.appComp.onOpenEditImages();
       } else {
         //emfanish eikonas
-        this.firebaseX.logEvent('Show_Image',{}).finally(() => {
+        this.firebaseAnalytics.logEvent('Show_Image',{}).finally(() => {
           this.router.navigate(['/showimage']);
         })
       }

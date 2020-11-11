@@ -9,8 +9,8 @@ import { MainService } from './services/main/main.service';
 import { Router } from '@angular/router';
 import { Market } from '@ionic-native/market/ngx';
 import { DOCUMENT } from '@angular/common';
-//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -28,7 +28,7 @@ export class AppComponent {
     private router: Router,
     private menu: MenuController,
     private market: Market,
-    private firebaseX: FirebaseX,
+    private firebaseAnalytics: FirebaseAnalytics,
     @Inject(DOCUMENT) private document: Document
   ) {
     //this.translate.setDefaultLang('el');
@@ -58,12 +58,7 @@ export class AppComponent {
       }).then(() => {
         alert('ok1');
       }) */
-      this.firebaseX.logEvent('APP_OPEN','').catch((err) => {
-        //AnalyticsFirebase.resetAnalyticsData()
-        alert(err);
-      }).then(() => {
-        alert('ok2');
-      })
+      this.firebaseAnalytics.logEvent('APP_OPEN','')
       alert('3');
       this.statusBar.show();
       this.splashScreen.hide();
@@ -106,7 +101,7 @@ export class AppComponent {
   }
 
   async onRateApp() {
-    this.firebaseX.logEvent('Rate_us',{platform: this.platform.platforms()}).catch(() => {
+    this.firebaseAnalytics.logEvent('Rate_us',{platform: this.platform.platforms()}).catch(() => {
     })
     if (this.platform.is('android')) {
       this.market.open('io.smsngo.starter');

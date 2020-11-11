@@ -5,8 +5,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { MainService } from '../services/main/main.service';
 //import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Location } from '@angular/common';
-//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 //https://www.freecodecamp.org/news/how-to-make-image-upload-easy-with-angular-1ed14cb2773b/
 //https://www.appstorescreenshot.com/
 @Component({
@@ -22,8 +22,8 @@ export class ImagesPage implements OnInit {
     private location: Location,
     private camera: Camera,
     public mainService: MainService,
-    private firebaseX: FirebaseX) { 
-      this.firebaseX.setScreenName('edit_image')
+    private firebaseAnalytics: FirebaseAnalytics) { 
+      this.firebaseAnalytics.setCurrentScreen('edit_image')
     }
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class ImagesPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.firebaseX.logEvent('Image_Saved_From_Camera',{}).finally(() => {
+      this.firebaseAnalytics.logEvent('Image_Saved_From_Camera',{}).finally(() => {
         this.mainService.saveImage(base64Image).then(() => {
           this.imageExist = true;
         }).catch(err => { alert('Image did not saved on storage') })
@@ -63,7 +63,7 @@ export class ImagesPage implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.firebaseX.logEvent('Image_Saved_From_File',{}).finally(() => {
+      this.firebaseAnalytics.logEvent('Image_Saved_From_File',{}).finally(() => {
         this.mainService.saveImage(this.selectedFile.src).then(() => {
           this.imageExist = true;
         })

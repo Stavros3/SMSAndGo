@@ -5,8 +5,8 @@ import { Person } from 'src/app/models/person.model';
 import { Stats, StatsItem } from 'src/app/models/Stats.model';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
-//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class MainService {
   private lang: string;
   constructor(private storage: Storage,
     public translate: TranslateService,
-    private firebaseX: FirebaseX) { }
+    private firebaseAnalytics: FirebaseAnalytics) { }
 
   saveImage(data: any): Promise<any> {
     return this.storage.set('imagePermit', data);
@@ -27,7 +27,7 @@ export class MainService {
   }
 
   async crearImage(): Promise<void> {
-    this.firebaseX.logEvent('Image_Deleted',{});
+    this.firebaseAnalytics.logEvent('Image_Deleted',{});
     return this.storage.remove('imagePermit');
   }
 
@@ -36,7 +36,7 @@ export class MainService {
   } 
 
   async setDefauldLang(data: string): Promise<any> {
-    this.firebaseX.logEvent('Language_Change', { lang: data });
+    this.firebaseAnalytics.logEvent('Language_Change', { lang: data });
     this.lang = data;
     return this.storage.set('langDefault', data);
   }
@@ -51,7 +51,7 @@ export class MainService {
   }
 
   async clearAll(): Promise<void> {
-    this.firebaseX.logEvent('Clear_All_Data',{})
+    this.firebaseAnalytics.logEvent('Clear_All_Data',{})
     return this.storage.clear();
   }
 

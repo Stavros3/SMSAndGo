@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MainService } from '../services/main/main.service';
-import { Stats, StatsItem } from '../models/Stats.model';
+import { Stats } from '../models/Stats.model';
 import { Location } from '@angular/common';
 import { AlertController } from '@ionic/angular';
-import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+//import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 @Component({
   selector: 'app-stats',
@@ -17,8 +19,9 @@ export class StatsPage implements OnInit {
   constructor(public translate: TranslateService,
     public main: MainService,
     private location: Location,
-    public alertController: AlertController) {
-      AnalyticsFirebase.setCurrentScreen('view_stats')
+    public alertController: AlertController,
+    private firebaseX: FirebaseX) {
+      this.firebaseX.setScreenName('view_stats')
       this.country = this.main.getCoutnry();
   }
 

@@ -17,6 +17,7 @@ import { PersonalInfoPageModule } from './personal-info/personal-info.module';
 import { ImagesPageModule } from './images/images.module';
 import { MainService } from './services/main/main.service';
 import { Market } from '@ionic-native/market/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { Market } from '@ionic-native/market/ngx';
     IonicStorageModule.forRoot(),
     ShowImagePageModule,
     PersonalInfoPageModule,
-    ImagesPageModule
+    ImagesPageModule,
   ],
   providers: [
     StatusBar,
@@ -49,7 +50,8 @@ import { Market } from '@ionic-native/market/ngx';
       useFactory: initializeApp,
       deps: [MainService],
       multi: true
-    }
+    },
+    FirebaseX
   ],
   bootstrap: [AppComponent]
 })

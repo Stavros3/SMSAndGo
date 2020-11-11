@@ -19,10 +19,10 @@
         "@angular/platform-browser": "~8.2.14",
         "@angular/platform-browser-dynamic": "~8.2.14",
         "@angular/router": "~8.2.14",
-        "@ionic-native/analytics-firebase": "^5.29.0",
         "@ionic-native/android-permissions": "^5.23.0",
         "@ionic-native/camera": "^5.23.0",
         "@ionic-native/core": "^5.0.7",
+        "@ionic-native/firebase-x": "^5.29.0",
         "@ionic-native/ionic-webview": "^5.23.0",
         "@ionic-native/market": "^5.24.0",
         "@ionic-native/sms": "^5.23.0",
@@ -33,12 +33,11 @@
         "@ngx-translate/core": "^12.1.2",
         "@ngx-translate/http-loader": "^4.0.0",
         "cordova-android": "^7.1.4",
-        "cordova-annotated-plugin-android": "^1.0.4",
         "cordova-ios": "^5.1.1",
-        "cordova-play-services-version-adapter": "^1.1.0",
         "cordova-plugin-android-permissions": "^1.0.2",
         "cordova-plugin-camera": "^4.1.0",
         "cordova-plugin-device": "2.0.2",
+        "cordova-plugin-firebasex": "^11.0.3",
         "cordova-plugin-ionic": "^5.4.7",
         "cordova-plugin-ionic-keyboard": "^2.0.5",
         "cordova-plugin-ionic-webview": "^4.0.0",
@@ -50,7 +49,9 @@
         "core-js": "^2.5.4",
         "ionic": "^5.4.16",
         "moment": "^2.24.0",
+        "promise-polyfill": "^8.2.0",
         "rxjs": "~6.5.1",
+        "rxjs-compat": "^6.6.3",
         "tslib": "^1.9.0",
         "zone.js": "~0.9.1"
     },
@@ -107,7 +108,7 @@
                 "UPDATE_API": "https://api.ionicjs.com"
             },
             "cordova-plugin-market": {},
-            "cordova-plugin-analytics": {}
+            "cordova-plugin-firebasex": {}
         },
         "platforms": [
             "android",

@@ -5,10 +5,12 @@ import { MenuController, AlertController, ModalController, Platform } from '@ion
 import { TranslateService } from '@ngx-translate/core';
 import { Person } from '../models/person.model';
 import { PersonalInfoPage } from '../personal-info/personal-info.page';
-import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+//import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { AppComponent } from '../app.component';
 import { MainService } from '../services/main/main.service';
 import { Router } from '@angular/router';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +30,10 @@ export class HomePage {
     private modalController: ModalController,
     private appComp: AppComponent,
     private mainService: MainService,
-    private router: Router
+    private router: Router,
+    private firebaseX: FirebaseX
   ) {
-    AnalyticsFirebase.setCurrentScreen('home')
+    this.firebaseX.setScreenName('home')
       .then(() => console.log('View successfully tracked'))
       .catch(err => console.log('Error tracking view:', err));      
   }
@@ -53,7 +56,7 @@ export class HomePage {
         return;
       }
 
-      AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
+      this.firebaseX.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
 
         if (this.country == 'gr') {
           smsNumber = '13033';
@@ -97,7 +100,7 @@ export class HomePage {
         this.appComp.onOpenEditImages();
       } else {
         //emfanish eikonas
-        AnalyticsFirebase.logEvent('Show_Image').finally(() => {
+        this.firebaseX.logEvent('Show_Image',{}).finally(() => {
           this.router.navigate(['/showimage']);
         })
       }

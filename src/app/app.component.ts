@@ -96,7 +96,11 @@ export class AppComponent {
   async onRateApp() {
     await AnalyticsFirebase.logEvent('Rate_us').catch(() => {
     })
-    this.market.open('io.smsngo.starter');
+    if (this.platform.is('android')) {
+      this.market.open('io.smsngo.starter');
+    } else {
+      this.market.open('gr.progressnet.smsngo');
+    }
   }
 
   async specialThnx() {

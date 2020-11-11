@@ -55,15 +55,17 @@ export class AppComponent {
       }).then(() => {
         alert('ok1');
       })
-          AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch((err) => {
-            //AnalyticsFirebase.resetAnalyticsData()
-            alert(err);
-          }).then(() => {
-            alert('ok2');
-      })
+      
       alert('3');
       this.statusBar.show();
       this.splashScreen.hide();
+      alert('4');
+      AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch((err) => {
+        //AnalyticsFirebase.resetAnalyticsData()
+        alert(err);
+      }).then(() => {
+        alert('ok2');
+      })
     })
   }
   ionViewDidLeave() {

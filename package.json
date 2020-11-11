@@ -36,7 +36,6 @@
         "cordova-annotated-plugin-android": "^1.0.4",
         "cordova-ios": "^5.1.1",
         "cordova-play-services-version-adapter": "^1.1.0",
-        "cordova-plugin-analytics": "^2.0.0",
         "cordova-plugin-android-permissions": "^1.0.2",
         "cordova-plugin-camera": "^4.1.0",
         "cordova-plugin-device": "2.0.2",
@@ -94,7 +93,6 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-ionic-webview": {},
             "cordova-plugin-ionic-keyboard": {},
-            "cordova-plugin-analytics": {},
             "cordova-sms-plugin": {},
             "cordova-plugin-android-permissions": {},
             "cordova-plugin-camera": {

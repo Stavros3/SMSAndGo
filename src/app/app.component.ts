@@ -55,8 +55,9 @@ export class AppComponent {
       }).then(() => {
         alert('ok1');
       })
-          AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
+          AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch((err) => {
             //AnalyticsFirebase.resetAnalyticsData()
+            alert(err);
           }).then(() => {
             alert('ok2');
       })

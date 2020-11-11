@@ -37,23 +37,30 @@ export class AppComponent {
         this.document.documentElement.dir = 'rtl';
       } else {
         this.document.documentElement.dir = 'ltr';
-      }
+    }
+    alert('1');
     this.initializeApp();
   }
 
   initializeApp() {
-    this.platform.ready().then(async () => {
-      this.platform.backButton.subscribe(async () => {
+    this.platform.ready().then(() => {
+      alert('2');
+      this.platform.backButton.subscribe(() => {
         if (this.router.isActive('/home', true) && this.router.url === '/home') {
           navigator['app'].exitApp();
         }
       });
       AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
         //AnalyticsFirebase.resetAnalyticsData()
+      }).then(() => {
+        alert('ok1');
       })
           AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
             //AnalyticsFirebase.resetAnalyticsData()
-          })
+          }).then(() => {
+            alert('ok2');
+      })
+      alert('3');
       this.statusBar.show();
       this.splashScreen.hide();
     })

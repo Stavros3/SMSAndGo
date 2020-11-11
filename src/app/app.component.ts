@@ -48,12 +48,12 @@ export class AppComponent {
           navigator['app'].exitApp();
         }
       });
-      await AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
+      AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
         //AnalyticsFirebase.resetAnalyticsData()
       })
-      await AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
-        //AnalyticsFirebase.resetAnalyticsData()
-      })
+          AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
+            //AnalyticsFirebase.resetAnalyticsData()
+          })
       this.statusBar.show();
       this.splashScreen.hide();
     })
@@ -94,7 +94,7 @@ export class AppComponent {
   }
 
   async onRateApp() {
-    await AnalyticsFirebase.logEvent('Rate_us').catch(() => {
+    AnalyticsFirebase.logEvent('Rate_us').catch(() => {
     })
     if (this.platform.is('android')) {
       this.market.open('io.smsngo.starter');

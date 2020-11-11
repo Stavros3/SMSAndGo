@@ -24,7 +24,7 @@ export class MainService {
   }
 
   async crearImage(): Promise<void> {
-    await AnalyticsFirebase.logEvent('Image_Deleted');
+    AnalyticsFirebase.logEvent('Image_Deleted');
     return this.storage.remove('imagePermit');
   }
 
@@ -33,7 +33,7 @@ export class MainService {
   } 
 
   async setDefauldLang(data: string): Promise<any> {
-    await AnalyticsFirebase.logEvent('Language_Change', { lang: data });
+    AnalyticsFirebase.logEvent('Language_Change', { lang: data });
     this.lang = data;
     return this.storage.set('langDefault', data);
   }
@@ -48,7 +48,7 @@ export class MainService {
   }
 
   async clearAll(): Promise<void> {
-    await AnalyticsFirebase.logEvent('Clear_All_Data')
+    AnalyticsFirebase.logEvent('Clear_All_Data')
     return this.storage.clear();
   }
 

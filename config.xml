@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="gr.progressnet.smsngo" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>SMSnGo</name>
+
+  <name>SMSnGo</name>
     <description>Send sms and then go out</description>
     <author email="s.oikonomidis37@gmail.com" href="https://www.linkedin.com/in/stavros-oikonomidis/">Oikonomidis Stavros</author>
     <content src="index.html" />
@@ -112,8 +113,8 @@
         <variable name="MAX_STORE" value="2" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
-    </plugin><!-- 
-    <plugin name="cordova-plugin-market" spec="^1.2.0" /> -->
+    </plugin> 
+    <plugin name="cordova-plugin-market" spec="^1.2.0" />
     <engine name="android" spec="^7.1.4" />
     <engine name="ios" spec="~4.5.5" />
 </widget>

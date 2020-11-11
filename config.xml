@@ -112,8 +112,8 @@
         <variable name="MAX_STORE" value="2" />
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
-    </plugin>
-    <plugin name="cordova-plugin-market" spec="^1.2.0" />
+    </plugin><!-- 
+    <plugin name="cordova-plugin-market" spec="^1.2.0" /> -->
     <engine name="android" spec="^7.1.4" />
     <engine name="ios" spec="~4.5.5" />
 </widget>

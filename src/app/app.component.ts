@@ -98,9 +98,9 @@ export class AppComponent {
     })
     if (this.platform.is('android')) {
       this.market.open('io.smsngo.starter');
-    } else {
+    } /* else {
       this.market.open('gr.progressnet.smsngo');
-    }
+    } */
   }
 
   async specialThnx() {

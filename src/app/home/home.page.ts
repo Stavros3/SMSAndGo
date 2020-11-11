@@ -33,7 +33,9 @@ export class HomePage {
     private router: Router,
     private firebaseAnalytics: FirebaseAnalytics
   ) {
-    this.firebaseAnalytics.setCurrentScreen('home')     
+    this.firebaseAnalytics.setCurrentScreen('home')
+      .then(() => console.log('View successfully tracked'))
+      .catch(err => console.log('Error tracking view:', err));      
   }
 
   ionViewWillEnter() {    

@@ -58,7 +58,12 @@ export class AppComponent {
       }).then(() => {
         alert('ok1');
       }) */
-      this.firebaseAnalytics.logEvent('APP_OPEN','')
+      this.firebaseAnalytics.logEvent('APP_OPEN','').catch((err) => {
+        //AnalyticsFirebase.resetAnalyticsData()
+        alert(err);
+      }).then(() => {
+        alert('ok2');
+      })
       alert('3');
       this.statusBar.show();
       this.splashScreen.hide();

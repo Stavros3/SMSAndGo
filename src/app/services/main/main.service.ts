@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Person } from 'src/app/models/person.model';
-//import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Stats, StatsItem } from 'src/app/models/Stats.model';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,8 @@ export class MainService {
   private lang: string;
   constructor(private storage: Storage,
     public translate: TranslateService,
-    private firebaseAnalytics: FirebaseAnalytics) { }
+    //private firebaseAnalytics: FirebaseAnalytics
+  ) { }
 
   saveImage(data: any): Promise<any> {
     return this.storage.set('imagePermit', data);
@@ -27,7 +28,7 @@ export class MainService {
   }
 
   async crearImage(): Promise<void> {
-    this.firebaseAnalytics.logEvent('Image_Deleted',{});
+    AnalyticsFirebase.logEvent('Image_Deleted',{});
     return this.storage.remove('imagePermit');
   }
 
@@ -36,7 +37,7 @@ export class MainService {
   } 
 
   async setDefauldLang(data: string): Promise<any> {
-    this.firebaseAnalytics.logEvent('Language_Change', { lang: data });
+    AnalyticsFirebase.logEvent('Language_Change', { lang: data });
     this.lang = data;
     return this.storage.set('langDefault', data);
   }
@@ -51,7 +52,7 @@ export class MainService {
   }
 
   async clearAll(): Promise<void> {
-    this.firebaseAnalytics.logEvent('Clear_All_Data',{})
+    AnalyticsFirebase.logEvent('Clear_All_Data',{})
     return this.storage.clear();
   }
 

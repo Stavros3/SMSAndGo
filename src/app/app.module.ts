@@ -17,7 +17,7 @@ import { PersonalInfoPageModule } from './personal-info/personal-info.module';
 import { ImagesPageModule } from './images/images.module';
 import { MainService } from './services/main/main.service';
 import { Market } from '@ionic-native/market/ngx';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,7 +50,7 @@ import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
       deps: [MainService],
       multi: true
     },
-    FirebaseAnalytics
+    //FirebaseAnalytics
   ],
   bootstrap: [AppComponent]
 })

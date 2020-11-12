@@ -5,13 +5,14 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { MainService } from './services/main/main.service';
-//import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Router } from '@angular/router';
 import { Market } from '@ionic-native/market/ngx';
 import { DOCUMENT } from '@angular/common';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -29,7 +30,8 @@ export class AppComponent {
     private router: Router,
     private menu: MenuController,
     private market: Market,
-    private firebaseAnalytics: FirebaseAnalytics,
+    //private firebaseAnalytics: FirebaseAnalytics,
+    //private analyticsFirebase: AnalyticsFirebase,
     @Inject(DOCUMENT) private document: Document
   ) {
     //this.translate.setDefaultLang('el');
@@ -52,16 +54,16 @@ export class AppComponent {
         }
       });
       
-      /* AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
+      AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
         //AnalyticsFirebase.resetAnalyticsData()
       }).then(() => {
         alert('ok1');
-      }) */
-      this.firebaseAnalytics.logEvent('APP_OPEN', '').catch((er) => {
+      }) 
+      /* this.firebaseAnalytics.logEvent('APP_OPEN', '').catch((er) => {
         alert(er)
       }).then(() => {
         alert('ok');
-      })
+      }) */
       this.statusBar.show();
       this.splashScreen.hide();
     })
@@ -102,7 +104,7 @@ export class AppComponent {
   }
 
   async onRateApp() {
-    this.firebaseAnalytics.logEvent('Rate_us',{platform: this.platform.platforms()})
+    AnalyticsFirebase.logEvent('Rate_us',{platform: this.platform.platforms()})
     if (this.platform.is('android')) {
       this.market.open('io.smsngo.starter');
     } /* else {

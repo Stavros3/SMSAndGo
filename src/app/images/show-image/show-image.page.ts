@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Location } from '@angular/common';
 import { MenuController } from '@ionic/angular';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 
 @Component({
   selector: 'app-show-image',
@@ -23,9 +24,9 @@ export class ShowImagePage implements OnInit {
     //private modalCtrl:ModalController,
     private location: Location,
     private menu: MenuController,
-    private firebaseAnalytics: FirebaseAnalytics
+    //private firebaseAnalytics: FirebaseAnalytics
     ) {
-      this.firebaseAnalytics.setCurrentScreen('view_image')
+      AnalyticsFirebase.setCurrentScreen('view_image')
      }
 
  async ngOnInit() {

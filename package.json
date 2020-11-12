@@ -37,7 +37,6 @@
         "cordova-plugin-android-permissions": "^1.0.2",
         "cordova-plugin-camera": "^4.1.0",
         "cordova-plugin-device": "2.0.2",
-        "cordova-plugin-firebase": "^2.0.5",
         "cordova-plugin-firebase-analytics": "^5.0.0",
         "cordova-plugin-ionic": "^5.4.7",
         "cordova-plugin-ionic-keyboard": "^2.0.5",
@@ -109,7 +108,6 @@
                 "UPDATE_API": "https://api.ionicjs.com"
             },
             "cordova-plugin-market": {},
-            "cordova-plugin-firebase": {},
             "cordova-plugin-firebase-analytics": {}
         },
         "platforms": [

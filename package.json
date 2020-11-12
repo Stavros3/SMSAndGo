@@ -35,6 +35,7 @@
         "@ngx-translate/http-loader": "^4.0.0",
         "cordova-android": "^7.1.4",
         "cordova-annotated-plugin-android": "^1.0.4",
+        "cordova-ios": "^6.1.1",
         "cordova-play-services-version-adapter": "^1.1.0",
         "cordova-plugin-analytics": "^2.0.0",
         "cordova-plugin-android-permissions": "^1.0.2",

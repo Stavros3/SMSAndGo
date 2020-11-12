@@ -40,13 +40,11 @@ export class AppComponent {
       } else {
         this.document.documentElement.dir = 'ltr';
     }
-    alert('1');
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      alert('2');
       this.platform.backButton.subscribe(() => {
         if (this.router.isActive('/home', true) && this.router.url === '/home') {
           navigator['app'].exitApp();
@@ -58,16 +56,9 @@ export class AppComponent {
       }).then(() => {
         alert('ok1');
       }) */
-      this.firebaseAnalytics.logEvent('APP_OPEN','').catch((err) => {
-        //AnalyticsFirebase.resetAnalyticsData()
-        alert(err);
-      }).then(() => {
-        alert('ok2');
-      })
-      alert('3');
+      this.firebaseAnalytics.logEvent('APP_OPEN','')
       this.statusBar.show();
       this.splashScreen.hide();
-      alert('4');
     })
   }
   ionViewDidLeave() {
@@ -106,8 +97,7 @@ export class AppComponent {
   }
 
   async onRateApp() {
-    this.firebaseAnalytics.logEvent('Rate_us',{platform: this.platform.platforms()}).catch(() => {
-    })
+    this.firebaseAnalytics.logEvent('Rate_us',{platform: this.platform.platforms()})
     if (this.platform.is('android')) {
       this.market.open('io.smsngo.starter');
     } /* else {

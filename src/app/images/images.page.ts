@@ -47,11 +47,11 @@ export class ImagesPage implements OnInit {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.firebaseAnalytics.logEvent('Image_Saved_From_Camera',{}).finally(() => {
+      this.firebaseAnalytics.logEvent('Image_Saved_From_Camera',{})
         this.mainService.saveImage(base64Image).then(() => {
           this.imageExist = true;
         }).catch(err => { alert('Image did not saved on storage') })
-      })
+      
     }, (err) => {
       // Handle error
     });
@@ -63,11 +63,10 @@ export class ImagesPage implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.firebaseAnalytics.logEvent('Image_Saved_From_File',{}).finally(() => {
+      this.firebaseAnalytics.logEvent('Image_Saved_From_File',{})
         this.mainService.saveImage(this.selectedFile.src).then(() => {
           this.imageExist = true;
         })
-      })
     })
     reader.readAsDataURL(file);
 

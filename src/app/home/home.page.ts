@@ -33,9 +33,7 @@ export class HomePage {
     private router: Router,
     private firebaseAnalytics: FirebaseAnalytics
   ) {
-    this.firebaseAnalytics.setCurrentScreen('home')
-      .then(() => console.log('View successfully tracked'))
-      .catch(err => console.log('Error tracking view:', err));      
+    this.firebaseAnalytics.setCurrentScreen('home')      
   }
 
   ionViewWillEnter() {    
@@ -56,7 +54,7 @@ export class HomePage {
         return;
       }
 
-      this.firebaseAnalytics.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
+      this.firebaseAnalytics.logEvent('SMS_Sended', { sendCode: code })
 
         if (this.country == 'gr') {
           smsNumber = '13033';
@@ -70,7 +68,7 @@ export class HomePage {
           this.mainService.addStat(code);
           this.presentAlert(false).then(() => { })
         })
-      })
+      
     })
   }
 
@@ -100,9 +98,9 @@ export class HomePage {
         this.appComp.onOpenEditImages();
       } else {
         //emfanish eikonas
-        this.firebaseAnalytics.logEvent('Show_Image',{}).finally(() => {
+        this.firebaseAnalytics.logEvent('Show_Image',{})
           this.router.navigate(['/showimage']);
-        })
+        
       }
     })
   }

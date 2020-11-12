@@ -9,7 +9,8 @@ import { MainService } from './services/main/main.service';
 import { Router } from '@angular/router';
 import { Market } from '@ionic-native/market/ngx';
 import { DOCUMENT } from '@angular/common';
-
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 @Component({
   selector: 'app-root',

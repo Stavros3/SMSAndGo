@@ -47,7 +47,7 @@ export class PersonalInfoPage implements OnInit {
         this.personalInfoForm.setValue({ nameSurname: data.nameSurname, address: data.address, country: data.country })
         this.showBack = true;
       }
-    })
+    }).catch((err)=> alert(err))
   }
 
   onSave(value: Person) {

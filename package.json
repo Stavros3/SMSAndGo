@@ -19,7 +19,6 @@
         "@angular/platform-browser": "~8.2.14",
         "@angular/platform-browser-dynamic": "~8.2.14",
         "@angular/router": "~8.2.14",
-        "@ionic-native/analytics-firebase": "^5.29.0",
         "@ionic-native/android-permissions": "^5.23.0",
         "@ionic-native/camera": "^5.23.0",
         "@ionic-native/core": "^5.0.7",

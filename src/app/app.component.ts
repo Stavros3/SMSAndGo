@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { MainService } from './services/main/main.service';
-import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+//import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { Router } from '@angular/router';
 import { Market } from '@ionic-native/market/ngx';
 import { DOCUMENT } from '@angular/common';
@@ -54,11 +54,11 @@ export class AppComponent {
         }
       });
       
-      AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
+      //AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
         //AnalyticsFirebase.resetAnalyticsData()
-      }).then(() => {
-        alert('ok1');
-      }) 
+     // }).then(() => {
+        //alert('ok1');
+     // }) 
       /* this.firebaseAnalytics.logEvent('APP_OPEN', '').catch((er) => {
         alert(er)
       }).then(() => {
@@ -104,7 +104,7 @@ export class AppComponent {
   }
 
   async onRateApp() {
-    AnalyticsFirebase.logEvent('Rate_us',{platform: this.platform.platforms()})
+   // AnalyticsFirebase.logEvent('Rate_us',{platform: this.platform.platforms()})
     if (this.platform.is('android')) {
       this.market.open('io.smsngo.starter');
     } /* else {

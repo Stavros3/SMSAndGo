@@ -5,7 +5,7 @@ import { Stats } from '../models/Stats.model';
 import { Location } from '@angular/common';
 import { AlertController } from '@ionic/angular';
 //import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
-import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
+//import { FirebaseAnalytics } from '@ionic-native/firebase-analytics/ngx';
 
 @Component({
   selector: 'app-stats',
@@ -19,8 +19,9 @@ export class StatsPage implements OnInit {
     public main: MainService,
     private location: Location,
     public alertController: AlertController,
-    private firebaseAnalytics: FirebaseAnalytics) {
-      this.firebaseAnalytics.setCurrentScreen('view_stats')
+    //private firebaseAnalytics: FirebaseAnalytics
+  ) {
+      //this.firebaseAnalytics.setCurrentScreen('view_stats')
       this.country = this.main.getCoutnry();
   }
 

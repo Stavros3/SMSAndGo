@@ -5,7 +5,7 @@ import { MenuController, AlertController, ModalController, Platform } from '@ion
 import { TranslateService } from '@ngx-translate/core';
 import { Person } from '../models/person.model';
 import { PersonalInfoPage } from '../personal-info/personal-info.page';
-import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
+//import { AnalyticsFirebase } from '@ionic-native/analytics-firebase';
 import { AppComponent } from '../app.component';
 import { MainService } from '../services/main/main.service';
 import { Router } from '@angular/router';
@@ -32,7 +32,7 @@ export class HomePage {
     private router: Router,
     //private firebaseAnalytics: FirebaseAnalytics
   ) {
-    AnalyticsFirebase.setCurrentScreen('home')      
+    //AnalyticsFirebase.setCurrentScreen('home')      
   }
 
   ionViewWillEnter() {    
@@ -53,7 +53,7 @@ export class HomePage {
         return;
       }
 
-      AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code })
+      //AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code })
 
         if (this.country == 'gr') {
           smsNumber = '13033';
@@ -97,7 +97,7 @@ export class HomePage {
         this.appComp.onOpenEditImages();
       } else {
         //emfanish eikonas
-        AnalyticsFirebase.logEvent('Show_Image',{})
+        //AnalyticsFirebase.logEvent('Show_Image',{})
           this.router.navigate(['/showimage']);
         
       }

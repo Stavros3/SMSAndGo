@@ -59,6 +59,7 @@ export class PersonalInfoPage implements OnInit {
       }
       this.onBack();
     })
+    .catch((err)=> alert(err))
   }
 
   onCountryChange(data: string) {

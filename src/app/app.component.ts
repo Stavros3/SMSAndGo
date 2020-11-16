@@ -42,16 +42,16 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.platform.ready().then(async () => {
-      this.platform.backButton.subscribe(async () => {
+    this.platform.ready().then(() => {
+      this.platform.backButton.subscribe(() => {
         if (this.router.isActive('/home', true) && this.router.url === '/home') {
           navigator['app'].exitApp();
         }
       });
-      await AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
+      AnalyticsFirebase.setMinimumSessionDuration(500).catch(() => {
         //AnalyticsFirebase.resetAnalyticsData()
       })
-      await AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
+      AnalyticsFirebase.logEvent(AnalyticsFirebase.DEFAULT_EVENTS.APP_OPEN).catch(() => {
         //AnalyticsFirebase.resetAnalyticsData()
       })
       this.statusBar.show();
@@ -98,16 +98,15 @@ export class AppComponent {
     })
     this.market.open('io.smsngo.starter');
   }
-
+/* <p>
+          <a href="https://progressnet.gr/" target="_system" >ProgressNet.gr</a> for publish on App Store 
+        </p> */
   async specialThnx() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Special Thanks',
       subHeader: '',
       message: `
-        <p>
-          <a href="https://progressnet.gr/" target="_system" >ProgressNet.gr</a> for publish on App Store 
-        </p>
         <p>
           KAMEL ZEINEDDIN (kkamelzain@gmail.com) for Arab translation
         </p>

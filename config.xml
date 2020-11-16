@@ -129,6 +129,6 @@
     <plugin name="cordova-plugin-market" spec="^1.2.0" />
     <plugin name="me.tonny.cordova.plugins.multidex" spec="https://github.com/jwall149/cordova-multidex" />
     <engine name="android" spec="^9.0.0" />
-    <engine name="ios" spec="5.1.1" />
+    <engine name="ios" spec="8.1.2" />
 
 </widget>

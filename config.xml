@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="gr.progressnet.smsngo" version="0.1.0"
-    xmlns="http://www.w3.org/ns/widgets"
-    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="gr.progressnet.smsngo" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>SMSnGo</name>
     <description>Send sms and then go out</description>
     <author email="s.oikonomidis37@gmail.com" href="https://www.linkedin.com/in/stavros-oikonomidis/">Oikonomidis Stavros</author>
@@ -20,8 +18,7 @@
     <preference name="AndroidXEnabled" value="true" />
     <preference name="orientation" value="portrait" />
     <platform name="android">
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>
         <resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />

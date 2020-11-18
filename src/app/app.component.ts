@@ -108,6 +108,9 @@ export class AppComponent {
       subHeader: '',
       message: `
         <p>
+          <a href="https://progressnet.gr/" target="_system" >ProgressNet.gr</a> for publish on App Store 
+          </p>
+        <p>
           KAMEL ZEINEDDIN (kkamelzain@gmail.com) for Arab translation
         </p>
       `,

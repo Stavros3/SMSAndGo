@@ -93,8 +93,8 @@ export class AppComponent {
     this.mainService.clearAll();
   }
 
-  async onRateApp() {
-    await AnalyticsFirebase.logEvent('Rate_us').catch(() => {
+  onRateApp() {
+    AnalyticsFirebase.logEvent('Rate_us').catch(() => {
     })
     this.market.open('io.smsngo.starter');
   }

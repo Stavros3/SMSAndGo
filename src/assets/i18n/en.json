@@ -13,6 +13,9 @@
         "errorTitle": "Something went wrong",
         "errorMsg": "SMS has not been send"
     },
+    "send13032":{
+        "title": "Send SMS to 13032"
+    },
     "sendCodes": {
         "gr": {
             "1": "Going to the pharmacy or visiting a Medical Doctor, in the case that this is recommended after consultation.",

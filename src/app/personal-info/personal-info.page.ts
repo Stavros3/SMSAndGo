@@ -48,11 +48,11 @@ export class PersonalInfoPage implements OnInit {
   }
 
   onSave(value: Person) {
-    this.mainService.setPersonData(value).then(async () => {
-      await AnalyticsFirebase.logEvent('Personal_Info_Saved')
+    this.mainService.setPersonData(value).then(() => {
+      AnalyticsFirebase.logEvent('Personal_Info_Saved')
 
       if (value.country != this.country || this.firstTime) {
-        await AnalyticsFirebase.logEvent('Country_Change', { country: value.country });
+        AnalyticsFirebase.logEvent('Country_Change', { country: value.country });
       }
       this.onBack();
     })

@@ -25,6 +25,9 @@
                 </ion-label>
             </ion-list-header>
             <ion-item *ngFor="let item of itemD.items">
+                <ion-avatar *ngIf="item.code == 0" slot="start">
+                    <ion-icon class="mySize" color="primary" name="storefront"></ion-icon>
+                </ion-avatar>
                 <ion-avatar *ngIf="item.code == 1" slot="start">
                     <ion-icon class="mySize" color="danger" name="fitness"></ion-icon>
                 </ion-avatar>
@@ -56,7 +59,7 @@
                     <ion-icon class="mySize" color="tertiary" name="swap-horizontal"></ion-icon>
                 </ion-avatar>
                 <ion-label>
-                    <h2>{{'stats.title' | translate}}#{{item.code}}</h2>
+                    <h2>{{'stats.title' | translate}}#{{item.code == 0 ? 13032 : item.code}}</h2>
                     <ion-chip>
                         <ion-icon name="time" color="dark"></ion-icon>
                         <p>{{item.time}}</p>

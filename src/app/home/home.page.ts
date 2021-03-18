@@ -32,11 +32,11 @@ export class HomePage {
   ) {
     AnalyticsFirebase.setCurrentScreen('home')
       .then(() => console.log('View successfully tracked'))
-      .catch(err => console.log('Error tracking view:', err));      
+      .catch(err => console.log('Error tracking view:', err));
   }
 
-  ionViewWillEnter() {    
-    this.country = this.mainService.getCoutnry();    
+  ionViewWillEnter() {
+    this.country = this.mainService.getCoutnry();
   }
 
   public openMenu() {
@@ -49,18 +49,21 @@ export class HomePage {
     this.mainService.getPersonData().then((data: Person) => {
       if (!data) {
         this.onOpenPersonalSettings();
-        
+
         return;
       }
 
       AnalyticsFirebase.logEvent('SMS_Sended', { sendCode: code }).finally(() => {
 
         if (this.country == 'gr') {
-          smsNumber = '13033';
+          smsNumber = code == 0 ? '13032' : '13033';
         } else {
           smsNumber = '8998';
         }
-        this.sms.send(smsNumber, code + ' ' + data.nameSurname + ' ' + data.address, { android: { intent: "INTENT" } }).then(() => {
+
+        const smsBody = code == 0 ? 'Μετακίνηση, ' + data.nameSurname + ', εμπορικό κέντρο' : code + ' ' + data.nameSurname + ' ' + data.address
+
+        this.sms.send(smsNumber, smsBody, { android: { intent: "INTENT" } }).then(() => {
           this.mainService.addStat(code);
           //this.presentAlert(true).then(() => { })
         }).catch(err => {
@@ -72,7 +75,7 @@ export class HomePage {
   }
 
   async presentAlert(status: boolean) {
-    this.translate.getTranslation(this.translate.currentLang).subscribe(async (data) => {      
+    this.translate.getTranslation(this.translate.currentLang).subscribe(async (data) => {
       this.alertMsgs = data;
       const alert = await this.alertController.create({
         header: (status ? this.alertMsgs.sendAlert.successTitle : this.alertMsgs.sendAlert.errorTitle),

@@ -13,6 +13,16 @@
         </ion-toolbar>
     </ion-header>
 
+    <ion-card *ngIf="country == 'gr'">
+        <ion-card-header>
+            <ion-item lines="none" (click)="send(0)" detail='false'>
+                <ion-icon color="primary" name="storefront" slot="start"></ion-icon>
+                <ion-card-title>{{'send13032.title' | translate}}</ion-card-title>
+                <ion-radio hidden></ion-radio>
+            </ion-item>
+        </ion-card-header>
+    </ion-card>
+
     <ion-card>
         <ion-card-header>
             <ion-item (click)="send(1)" detail='true'>
